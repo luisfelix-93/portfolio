@@ -35,8 +35,8 @@
         a {
             font-size: 22px;
             color: #4d4d4e;
-            line-height: 51px;
-            height: 51px;
+            line-height: 30px;
+            height: 30px;
             position: relative;
             text-decoration: none;
 
@@ -92,6 +92,11 @@
             content: 'SKILLS';
           }
         }  
+        a.experience-link {
+          &:after {
+            content: 'EXPERIENCE';
+          }
+        } 
         a.active {
             svg {
               color: #ffd700;

@@ -4,7 +4,6 @@ import {
     faPython,
     faGitAlt,
     faGithub,
-    faJsSquare,
     faReact,
   } from '@fortawesome/free-brands-svg-icons'
   import Loader from 'react-loaders'
@@ -32,7 +31,7 @@ const About = () => {
               idx={15}
             />
             </h1>
-            <p>
+            <p align = 'LEFT'>
                 Formerly a mechanical engineer, passionate about technology, and currently a back-end developer.</p>
             <p>
                 I am a mechanical engineer with a strong interest in technology. After years of working in the engineering field, I decided to make a career transition to software development. Today, I work as a back-end developer with technologies nodeJS, .NET c#, Python, and MySQL and SQL Server databases
