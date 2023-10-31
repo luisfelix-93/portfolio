@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import AnimatedLetters from '../AnimatedLetters';
-import Logo from './Logo'
 import { Link } from 'react-router-dom';
 import './index.scss'
 
@@ -58,7 +57,6 @@ const Home = () => {
                     CONTACT ME
                 </Link>
             </div>
-            <Logo/>
         </div>
         </>
         
