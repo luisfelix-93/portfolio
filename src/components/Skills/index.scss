@@ -1,0 +1,20 @@
+.skill {
+    margin: 10px;
+    text-align: center;
+    transition: transform 0.3s, filter 0.3s;
+  }
+  
+  .logo {
+    max-width: 100px;
+    filter: grayscale(100%); /* Aplicar escala de cinza aos logotipos */
+    transition: filter 0.3s;
+  }
+  
+  .skill:hover {
+    transform: scale(1.1); /* Redimensionar o elemento ao passar o mouse sobre ele */
+  }
+  
+  .skill:hover .logo {
+    filter: grayscale(0%); /* Remover escala de cinza ao passar o mouse sobre o logotipo */
+  }
+  
