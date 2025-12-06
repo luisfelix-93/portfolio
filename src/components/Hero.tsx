@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { ArrowRight, Download } from 'lucide-react';
-import { jsPDF } from 'jspdf';
+import { ArrowRight } from 'lucide-react';
+
 import { profileData } from '../data/profile';
 import { getUser } from '../services/github';
-import resumeContent from '../../docs/resume.md?raw';
+// import resumeContent from '../../docs/resume.md?raw';
 
 export const Hero = () => {
     const [avatarUrl, setAvatarUrl] = useState<string>('');
@@ -20,25 +20,25 @@ export const Hero = () => {
         fetchUser();
     }, []);
 
-    const handleDownloadCV = () => {
-        const doc = new jsPDF();
+    // const handleDownloadCV = () => {
+    //     const doc = new jsPDF();
 
-        // Split text to fit page width
-        const splitText = doc.splitTextToSize(resumeContent, 180);
+    //     // Split text to fit page width
+    //     const splitText = doc.splitTextToSize(resumeContent, 180);
 
-        let y = 10;
-        // Simple pagination handling
-        for (let i = 0; i < splitText.length; i++) {
-            if (y > 280) {
-                doc.addPage();
-                y = 10;
-            }
-            doc.text(splitText[i], 10, y);
-            y += 7;
-        }
+    //     let y = 10;
+    //     // Simple pagination handling
+    //     for (let i = 0; i < splitText.length; i++) {
+    //         if (y > 280) {
+    //             doc.addPage();
+    //             y = 10;
+    //         }
+    //         doc.text(splitText[i], 10, y);
+    //         y += 7;
+    //     }
 
-        doc.save('resume.pdf');
-    };
+    //     doc.save('resume.pdf');
+    // };
 
     return (
         <section id="about" className="min-h-screen flex items-center pt-16 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
