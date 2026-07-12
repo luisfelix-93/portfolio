@@ -73,5 +73,31 @@ export const profileData = {
             ● Built reporting tools leveraging MS Office automation to enhance project tracking and data accuracy.`,
             skills: ["C#", ".NET", "AutoCAD API", "MS Office Automation"]
         }
+    ],
+    featuredProjects: [
+        {
+            name: "load-tester",
+            repo: "https://github.com/luisfelix-93/load-tester",
+            readme: "https://github.com/luisfelix-93/load-tester#readme",
+            language: "Shell",
+        },
+        {
+            name: "jobs-bot",
+            repo: "https://github.com/luisfelix-93/jobs-bot",
+            readme: "https://github.com/luisfelix-93/jobs-bot/blob/main/docs/en-us/README.md",
+            language: "Go",
+        },
+        {
+            name: "lab-devops",
+            repo: "https://github.com/luisfelix-93/lab-devops",
+            readme: "https://github.com/luisfelix-93/lab-devops#readme",
+            language: "Go",
+        },
+        {
+            name: "support-agent",
+            repo: "https://github.com/luisfelix-93/support-agent",
+            readme: "https://github.com/luisfelix-93/support-agent#readme",
+            language: "TypeScript",
+        },
     ]
 }
