@@ -15,7 +15,7 @@
 
 ---
 
-## 🎨 Fase 1: Design Tokens & Sistema de Chanfros Win2K
+## 🎨 Fase 1: Design Tokens & Sistema de Chanfros Win2K ✅
 *Meta: Estabelecer a fundação estética inegociável do Windows 2000 (cores, chanfros 3D e fontes).*
 
 - [x] **1.1 Configuração Tipográfica & Fontes**
@@ -35,8 +35,8 @@
   - [x] Criar classe `.bevel-inset` (relevo rebaixado: bordas superiores escuras, inferiores claras).
   - [x] Criar classe `.win-button` (botão Win32 com efeito óptico de clique e deslocamento 1px).
   - [x] Criar gradientes utilitários para barras de título ativas e inativas.
-- [ ] **1.4 Validação e Teste Visual dos Primitivos**
-  - [ ] Validar contraste de texto contra superfícies `#D4D0C8` e azul marinho `#0A246A`.
+- [x] **1.4 Validação e Teste Visual dos Primitivos**
+  - [x] Validar contraste de texto contra superfícies `#D4D0C8` e azul marinho `#0A246A`.
 
 ---
 
