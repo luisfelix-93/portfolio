@@ -56,7 +56,7 @@ export const profileData = {
         {
             id: 4,
             role: "Early Engineering Experience (Development & Automation)",
-            company: "Menendez & Menedez",
+            company: "Menendez & Menendez",
             period: "2020 - 2021",
             description: `● Developed and maintained custom internal tools and plugins using C#/.NET to automate complex engineering workflows, replacing manual processes and saving significant engineering hours.
             ● Managed workflows using Trello/Jira, ensuring on-time delivery and transparent progress tracking.
