@@ -22,8 +22,8 @@
   - [x] Importar fontes clássicas via Google Fonts / webfonts (`Tahoma`, `Courier Prime` / `Lucida Console`).
   - [x] Configurar fallbacks no `index.html` e `index.css` (`Tahoma, MS Sans Serif, sans-serif`).
   - [x] Definir tamanhos fixos sem anti-aliasing borrado (8pt a 12pt).
-- [ ] **1.2 Tokens de Cores & Configuração Tailwind**
-  - [ ] Estender `tailwind.config.js` com a paleta oficial Win2K:
+- [x] **1.2 Tokens de Cores & Configuração Tailwind**
+  - [x] Estender `tailwind.config.js` com a paleta oficial Win2K:
     - Fundo do Desktop: `#3A6EA5` (Classic Desktop Blue) e `#008080` (Teal).
     - 3D Face (Neutro): `#D4D0C8`.
     - Realces e Sombras: High Light `#FFFFFF`, Soft Light `#DFDFDF`, Shadow `#808080`, Dark Shadow `#404040`.

@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --win-desktop: #3A6EA5;
+  --win-teal: #008080;
+  --win-face: #D4D0C8;
+  --win-light: #FFFFFF;
+  --win-soft: #DFDFDF;
+  --win-shadow: #808080;
+  --win-dark: #404040;
+  --win-link: #0000EE;
+  --win-selection: #0A246A;
+  --win-title-active-start: #0A246A;
+  --win-title-active-end: #A6CAF0;
+  --win-title-inactive-start: #808080;
+  --win-title-inactive-end: #C0C0C0;
+  --terminal-bg: #000000;
+  --terminal-green: #00FF66;
+  --terminal-gray: #CCCCCC;
+}
+
 @layer base {
   html, body {
     font-family: 'Tahoma', 'MS Sans Serif', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
