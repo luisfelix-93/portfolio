@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html, body {
+    font-family: 'Tahoma', 'MS Sans Serif', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 11px;
+    line-height: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    user-select: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-gray-900 text-white;
+  @apply bg-gray-900 text-white font-win;
 }
 
 @keyframes fade-in {
