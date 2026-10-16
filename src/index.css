@@ -41,6 +41,152 @@ body {
   @apply bg-gray-900 text-white font-win;
 }
 
+@layer components {
+  /* 3D Bevel Outset (Raised) - Buttons, Dialogs, Window Frames */
+  .bevel-outset {
+    background-color: var(--win-face);
+    border-top: 1px solid var(--win-light);
+    border-left: 1px solid var(--win-light);
+    border-right: 1px solid var(--win-dark);
+    border-bottom: 1px solid var(--win-dark);
+    box-shadow: inset 1px 1px 0px var(--win-soft), inset -1px -1px 0px var(--win-shadow);
+  }
+
+  /* 3D Bevel Inset (Sunken) - Inputs, Status Bar, Viewports, Systray */
+  .bevel-inset {
+    border-top: 1px solid var(--win-shadow);
+    border-left: 1px solid var(--win-shadow);
+    border-right: 1px solid var(--win-light);
+    border-bottom: 1px solid var(--win-light);
+    box-shadow: inset 1px 1px 0px var(--win-dark), inset -1px -1px 0px var(--win-soft);
+  }
+
+  /* Thin 1px Bevel Outset (e.g., toolbar buttons, tabs) */
+  .bevel-outset-thin {
+    border-top: 1px solid var(--win-light);
+    border-left: 1px solid var(--win-light);
+    border-right: 1px solid var(--win-shadow);
+    border-bottom: 1px solid var(--win-shadow);
+  }
+
+  /* Thin 1px Bevel Inset (e.g., status bar cells, text wells) */
+  .bevel-inset-thin {
+    border-top: 1px solid var(--win-shadow);
+    border-left: 1px solid var(--win-shadow);
+    border-right: 1px solid var(--win-light);
+    border-bottom: 1px solid var(--win-light);
+  }
+
+  /* Etched horizontal divider line */
+  .bevel-etched {
+    border-top: 1px solid var(--win-shadow);
+    border-bottom: 1px solid var(--win-light);
+    height: 2px;
+  }
+
+  /* Titlebars */
+  .titlebar-active {
+    background: linear-gradient(90deg, var(--win-title-active-start) 0%, var(--win-title-active-end) 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+  }
+
+  .titlebar-inactive {
+    background: linear-gradient(90deg, var(--win-title-inactive-start) 0%, var(--win-title-inactive-end) 100%);
+    color: var(--win-soft);
+    font-weight: 700;
+  }
+
+  /* Win32 Command Button */
+  .win-button {
+    background-color: var(--win-face);
+    color: #000000;
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 14px;
+    border-top: 1px solid var(--win-light);
+    border-left: 1px solid var(--win-light);
+    border-right: 1px solid var(--win-dark);
+    border-bottom: 1px solid var(--win-dark);
+    box-shadow: inset 1px 1px 0px var(--win-soft), inset -1px -1px 0px var(--win-shadow);
+    padding: 3px 12px;
+    outline: none;
+    cursor: default;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .win-button:active:not(:disabled),
+  .win-button.active {
+    border-top: 1px solid var(--win-dark);
+    border-left: 1px solid var(--win-dark);
+    border-right: 1px solid var(--win-light);
+    border-bottom: 1px solid var(--win-light);
+    box-shadow: inset 1px 1px 0px var(--win-shadow), inset -1px -1px 0px var(--win-soft);
+    padding-top: 4px;
+    padding-left: 13px;
+    padding-right: 11px;
+    padding-bottom: 2px;
+  }
+
+  .win-button:focus-visible:not(:disabled) {
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+  }
+
+  .win-button:disabled {
+    color: var(--win-shadow);
+    text-shadow: 1px 1px 0px var(--win-light);
+    cursor: not-allowed;
+  }
+
+  /* Win32 Window Chrome */
+  .win-window {
+    background-color: var(--win-face);
+    border-top: 1px solid var(--win-light);
+    border-left: 1px solid var(--win-light);
+    border-right: 1px solid var(--win-dark);
+    border-bottom: 1px solid var(--win-dark);
+    box-shadow: inset 1px 1px 0px var(--win-soft), inset -1px -1px 0px var(--win-shadow),
+                inset 2px 2px 0px var(--win-light), inset -2px -2px 0px var(--win-dark);
+    padding: 3px;
+  }
+
+  /* Win32 Window Control Button (Min, Max, Close) */
+  .win-control-button {
+    width: 16px;
+    height: 14px;
+    background-color: var(--win-face);
+    color: #000000;
+    border-top: 1px solid var(--win-light);
+    border-left: 1px solid var(--win-light);
+    border-right: 1px solid var(--win-dark);
+    border-bottom: 1px solid var(--win-dark);
+    box-shadow: inset 1px 1px 0px var(--win-soft), inset -1px -1px 0px var(--win-shadow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+    cursor: default;
+  }
+
+  .win-control-button:active {
+    border-top: 1px solid var(--win-dark);
+    border-left: 1px solid var(--win-dark);
+    border-right: 1px solid var(--win-light);
+    border-bottom: 1px solid var(--win-light);
+    box-shadow: inset 1px 1px 0px var(--win-shadow), inset -1px -1px 0px var(--win-soft);
+    transform: translate(1px, 1px);
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

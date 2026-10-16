@@ -30,11 +30,11 @@
     - Barra de Título Ativa: `#0A246A` -> `#A6CAF0`.
     - Barra de Título Inativa: `#808080` -> `#C0C0C0`.
     - Terminal: Fundo `#000000`, Verde Fósforo `#00FF66`, Cinza `#CCCCCC`.
-- [ ] **1.3 Classes Utilitárias de Chanfros 3D (Bevels)**
-  - [ ] Criar classe `.bevel-outset` (relevo projetado: bordas superiores claras, inferiores escuras).
-  - [ ] Criar classe `.bevel-inset` (relevo rebaixado: bordas superiores escuras, inferiores claras).
-  - [ ] Criar classe `.win-button` (botão Win32 com efeito óptico de clique e deslocamento 1px).
-  - [ ] Criar gradientes utilitários para barras de título ativas e inativas.
+- [x] **1.3 Classes Utilitárias de Chanfros 3D (Bevels)**
+  - [x] Criar classe `.bevel-outset` (relevo projetado: bordas superiores claras, inferiores escuras).
+  - [x] Criar classe `.bevel-inset` (relevo rebaixado: bordas superiores escuras, inferiores claras).
+  - [x] Criar classe `.win-button` (botão Win32 com efeito óptico de clique e deslocamento 1px).
+  - [x] Criar gradientes utilitários para barras de título ativas e inativas.
 - [ ] **1.4 Validação e Teste Visual dos Primitivos**
   - [ ] Validar contraste de texto contra superfícies `#D4D0C8` e azul marinho `#0A246A`.
 
