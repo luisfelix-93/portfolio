@@ -40,31 +40,31 @@
 
 ---
 
-## 🪟 Fase 2: Window Manager & Shell Base (Desktop + Taskbar)
+## 🪟 Fase 2: Window Manager & Shell Base (Desktop + Taskbar) ✅
 *Meta: Criar o ambiente de sistema operacional completo que gerencia múltiplas janelas e foco.*
 
-- [ ] **2.1 Contexto e Gerenciador de Janelas (`WindowManagerContext`)**
-  - [ ] Criar tipo `WindowState` (`id`, `title`, `icon`, `isOpen`, `isMinimized`, `isMaximized`, `zIndex`, `position`, `size`).
-  - [ ] Implementar hook e reducer para: `openWindow`, `closeWindow`, `minimizeWindow`, `toggleMaximize`, `bringToFront`.
-  - [ ] Gerenciar ordem Z (`z-index`) para alternar foco ao clicar em qualquer parte de uma janela.
-- [ ] **2.2 Componente Base de Janela (`WindowFrame.tsx`)**
-  - [ ] Barra de título com gradiente ativo/inativo, ícone da janela e nome em negrito.
-  - [ ] Trio de botões clássicos `[ _ ] [ 口 ] [ X ]` funcionais.
-  - [ ] Barra de menus opcional (`Arquivo`, `Editar`, `Exibir`, `Ajuda`).
-  - [ ] Suporte a arrastar janela pela barra de título (drag & drop com limites na tela).
-- [ ] **2.3 Barra de Tarefas Inferior (`Taskbar.tsx`)**
-  - [ ] Fixada no rodapé inferior (altura ~30px, cor `#D4D0C8`, borda superior `#FFFFFF`).
-  - [ ] Botão Iniciar com logotipo clássico de 4 cores e estado ativo rebaixado.
-  - [ ] Lista de botões das janelas abertas (relevo normal quando minimizada/em fundo, rebaixado quando focada).
-  - [ ] Bandeja do sistema (Systray rebaixado com relógio digital em tempo real e ícones de status).
-- [ ] **2.4 Menu Iniciar (`StartMenu.tsx`)**
-  - [ ] Faixa vertical clássica lateral "Windows 2000 Professional".
-  - [ ] Atalhos para abrir cada uma das 4 aplicações do portfólio.
-  - [ ] Botão "Desligar / Reiniciar" com diálogo de confirmação retrô.
-- [ ] **2.5 Área de Trabalho (`DesktopCanvas.tsx`)**
-  - [ ] Fundo sólido `#3A6EA5` preenchendo 100vw x 100vh sem rolagem indesejada.
-  - [ ] Grade de ícones clássicos no lado esquerdo com rótulo de texto e seleção ao clicar.
-  - [ ] Suporte a duplo-clique (e clique simples em mobile) para abrir a aplicação associada.
+- [x] **2.1 Contexto e Gerenciador de Janelas (`WindowManagerContext`)**
+  - [x] Criar tipo `WindowState` (`id`, `title`, `icon`, `isOpen`, `isMinimized`, `isMaximized`, `zIndex`, `position`, `size`).
+  - [x] Implementar hook e reducer para: `openWindow`, `closeWindow`, `minimizeWindow`, `toggleMaximize`, `bringToFront`.
+  - [x] Gerenciar ordem Z (`z-index`) para alternar foco ao clicar em qualquer parte de uma janela.
+- [x] **2.2 Componente Base de Janela (`WindowFrame.tsx`)**
+  - [x] Barra de título com gradiente ativo/inativo, ícone da janela e nome em negrito.
+  - [x] Trio de botões clássicos `[ _ ] [ 口 ] [ X ]` funcionais.
+  - [x] Barra de menus opcional (`Arquivo`, `Editar`, `Exibir`, `Ajuda`).
+  - [x] Suporte a arrastar janela pela barra de título (drag & drop com limites na tela).
+- [x] **2.3 Barra de Tarefas Inferior (`Taskbar.tsx`)**
+  - [x] Fixada no rodapé inferior (altura ~30px, cor `#D4D0C8`, borda superior `#FFFFFF`).
+  - [x] Botão Iniciar com logotipo clássico de 4 cores e estado ativo rebaixado.
+  - [x] Lista de botões das janelas abertas (relevo normal quando minimizada/em fundo, rebaixado quando focada).
+  - [x] Bandeja do sistema (Systray rebaixado com relógio digital em tempo real e ícones de status).
+- [x] **2.4 Menu Iniciar (`StartMenu.tsx`)**
+  - [x] Faixa vertical clássica lateral "Windows 2000 Professional".
+  - [x] Atalhos para abrir cada uma das 4 aplicações do portfólio.
+  - [x] Botão "Desligar / Reiniciar" com diálogo de confirmação retrô.
+- [x] **2.5 Área de Trabalho (`DesktopCanvas.tsx`)**
+  - [x] Fundo sólido `#3A6EA5` preenchendo 100vw x 100vh sem rolagem indesejada.
+  - [x] Grade de ícones clássicos no lado esquerdo com rótulo de texto e seleção ao clicar.
+  - [x] Suporte a duplo-clique (e clique simples em mobile) para abrir a aplicação associada.
 
 ---
 
