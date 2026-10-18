@@ -130,3 +130,54 @@ describe('Phase 5.2 - MMC Experience Panel Content', () => {
     assert.match(code, /Atual/, 'Must render active role badge');
   });
 });
+
+describe('Phase 5.3 - Technical Skills MMC Services Matrix', () => {
+  test('5.3.1 - profileData.skills defines required competencies including Kubernetes, Terraform, Go, CI/CD, and AWS', () => {
+    const profile = readSource('src', 'data', 'profile.ts');
+    const skillsBlockMatch = profile.match(/skills:\s*\[([\s\S]*?)\]\s*,\s*experience:/);
+    assert.ok(skillsBlockMatch, 'skills array must exist before experience');
+    const skillsBlock = skillsBlockMatch[1];
+
+    for (const tech of ['Kubernetes', 'Terraform', 'Go', 'CI/CD', 'AWS']) {
+      assert.ok(skillsBlock.includes(tech), `skills array must contain ${tech}`);
+    }
+  });
+
+  test('5.3.2 - each skill defines category, real production application and status', () => {
+    const profile = readSource('src', 'data', 'profile.ts');
+    const skillsBlockMatch = profile.match(/skills:\s*\[([\s\S]*?)\]\s*,\s*experience:/);
+    const skillsBlock = skillsBlockMatch[1];
+
+    assert.ok((skillsBlock.match(/category:\s*"/g) || []).length >= 5, 'Must define categories');
+    assert.ok((skillsBlock.match(/application:\s*"/g) || []).length >= 5, 'Must define real production application');
+    assert.ok((skillsBlock.match(/status:\s*"/g) || []).length >= 5, 'Must define status');
+  });
+
+  test('5.3.3 - MmcWindow renders MMC Snap-in / services table with classic headers', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /<table\b/, 'Must render table element');
+    assert.match(code, /Nome do Componente/, 'Must have Nome do Componente column header');
+    assert.match(code, /Domínio \/ Categoria/, 'Must have Domínio / Categoria column header');
+    assert.match(code, /Aplicação Prática em Produção/, 'Must have Aplicação Prática column header');
+    assert.match(code, /Status/, 'Must have Status column header');
+    assert.match(code, /bevel-outset-thin px-2 py-1/, 'Table headers must use Win2K bevel-outset-thin styling');
+  });
+
+  test('5.3.4 - MmcWindow iterates profileData.skills displaying name, category, and real application', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /profileData\.skills\.map/, 'Must map through profileData.skills');
+    assert.match(code, /\{skill\.name\}/, 'Must display skill.name');
+    assert.match(code, /\{skill\.category\}/, 'Must display skill.category');
+    assert.match(code, /\{skill\.application\}/, 'Must display skill.application');
+  });
+
+  test('5.3.5 - MmcWindow displays retro status chip for each service in the matrix', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /\{skill\.status\}/, 'Must display skill.status');
+    assert.match(code, /skill\.status === 'Em Produção'/, 'Must style Em Produção status');
+    assert.match(code, /skill\.status === 'Especialidade'/, 'Must style Especialidade status');
+  });
+});

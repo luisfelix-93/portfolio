@@ -126,8 +126,8 @@
     - Menendez & Menendez (Automation & Development)
     - A Solução Engenharia (.NET Automation)
   - [x] Descrições com bullets, conquistas e tags de tecnologias.
-- [ ] **5.3 Medidores de Habilidades Técnicas**
-  - [ ] Barras de progresso com blocos segmentados clássicos (ex: Kubernetes, Terraform, Go, CI/CD, AWS).
+- [x] **5.3 Matriz de Competências Técnicas (Tabela MMC)**
+  - [x] Matriz de tecnologias em tabela MMC Snap-in (colunas: Tecnologia, Categoria, Aplicação Prática em Prod e Status).
 - [ ] **5.4 Ação de Download do Currículo**
   - [ ] Botão Win32 `[ Baixar Currículo (.PDF) ]` integrado à geração existente `jspdf` com `docs/resume.md`.
 

@@ -373,17 +373,84 @@ export const MmcWindow: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="font-bold text-win-title text-win-selection mb-2 flex items-center gap-1.5">
-                  <Cpu className="w-3.5 h-3.5 text-green-700" />
-                  Competências Centrais
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {profileData.skills.map((skill) => (
-                    <div key={skill.name} className="bevel-inset-thin p-2 bg-[#FAF9F5] flex items-center gap-2">
-                      <div className="w-2.5 h-2.5 bg-win-selection shrink-0" />
-                      <span className="font-bold text-win-body text-gray-900">{skill.name}</span>
-                    </div>
-                  ))}
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="font-bold text-win-title text-win-selection flex items-center gap-1.5">
+                    <Cpu className="w-3.5 h-3.5 text-green-700" />
+                    Matriz de Tecnologias & Competências em Produção
+                  </h3>
+                  <span className="text-[10px] bg-win-face border border-win-shadow px-1.5 py-0.2 font-mono text-gray-700">
+                    {profileData.skills.length} Serviços Registrados
+                  </span>
+                </div>
+
+                {/* Tabela MMC Snap-in / services.msc */}
+                <div className="bevel-inset-thin overflow-x-auto bg-white">
+                  <table className="w-full text-win-caption border-collapse min-w-[580px]">
+                    <thead>
+                      <tr className="bg-win-face text-gray-900 border-b border-win-shadow select-none">
+                        <th className="bevel-outset-thin px-2 py-1 text-left font-bold w-[26%]">
+                          Nome do Componente
+                        </th>
+                        <th className="bevel-outset-thin px-2 py-1 text-left font-bold w-[22%]">
+                          Domínio / Categoria
+                        </th>
+                        <th className="bevel-outset-thin px-2 py-1 text-left font-bold w-[38%]">
+                          Aplicação Prática em Produção
+                        </th>
+                        <th className="bevel-outset-thin px-2 py-1 text-center font-bold w-[14%]">
+                          Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {profileData.skills.map((skill, idx) => {
+                        const Icon = skill.icon || Cpu;
+                        return (
+                          <tr
+                            key={skill.name}
+                            className={`border-b border-win-soft/60 hover:bg-win-selection/10 transition-colors ${
+                              idx % 2 === 1 ? 'bg-[#FAF9F5]' : 'bg-white'
+                            }`}
+                          >
+                            {/* Coluna 1: Nome com Ícone */}
+                            <td className="px-2 py-1.5 align-top">
+                              <div className="flex items-center gap-1.5">
+                                <Icon className="w-3.5 h-3.5 text-win-selection shrink-0" />
+                                <span className="font-bold text-win-body text-black">
+                                  {skill.name}
+                                </span>
+                              </div>
+                            </td>
+
+                            {/* Coluna 2: Categoria */}
+                            <td className="px-2 py-1.5 align-top font-mono text-[10px] text-gray-700">
+                              {skill.category}
+                            </td>
+
+                            {/* Coluna 3: Aplicação Prática em Produção */}
+                            <td className="px-2 py-1.5 align-top text-gray-800 leading-snug">
+                              {skill.application}
+                            </td>
+
+                            {/* Coluna 4: Status */}
+                            <td className="px-2 py-1.5 align-top text-center">
+                              <span
+                                className={`inline-block px-1.5 py-0.2 text-[9px] font-mono border ${
+                                  skill.status === 'Em Produção'
+                                    ? 'bg-green-100 text-green-900 border-green-300 font-bold'
+                                    : skill.status === 'Especialidade'
+                                    ? 'bg-blue-100 text-win-selection border-blue-300 font-bold'
+                                    : 'bg-win-face text-gray-800 border-win-shadow'
+                                }`}
+                              >
+                                {skill.status}
+                              </span>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
