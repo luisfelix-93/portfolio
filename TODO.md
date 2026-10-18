@@ -160,9 +160,9 @@
 ## 🚀 Fase 7: Polimento, Responsividade & Validação Final
 *Meta: Garantir qualidade de produção, ausência de bugs e experiência impecável.*
 
-- [ ] **7.1 Responsividade Mobile & Tablet**
-  - [ ] Detecção de telas pequenas: abrir janelas maximizadas por padrão em resoluções < 768px.
-  - [ ] Barra de tarefas com rolagem horizontal ou botões compactados em telas menores.
+- [x] **7.1 Responsividade Mobile & Tablet**
+  - [x] Detecção de telas pequenas: abrir janelas maximizadas por padrão em resoluções < 768px.
+  - [x] Barra de tarefas com rolagem horizontal ou botões compactados em telas menores.
 - [ ] **7.2 Lixeira e Easter Eggs**
   - [ ] Ícone da Lixeira funcional no desktop com lista de "ideias antigas / bugs superados".
   - [ ] Efeito sonoro clássico de inicialização (opcional, com mute ativado por padrão).

@@ -97,14 +97,14 @@ export const Taskbar: React.FC = () => {
         <div className="w-[2px] h-[20px] bevel-etched rotate-90 mx-0.5" />
 
         {/* Open window tabs */}
-        <div className="flex-1 flex items-center gap-1 overflow-x-auto h-full py-0.5">
+        <div className="flex-1 flex items-center gap-1 overflow-x-auto h-full py-0.5 min-w-0">
           {openWindows.map((win) => {
             const isActive = state.activeWindowId === win.id && !win.isMinimized;
             return (
               <button
                 key={win.id}
                 type="button"
-                className={`h-[22px] max-w-[170px] flex-1 min-w-[80px] px-2 flex items-center gap-1.5 truncate text-left text-win-caption font-bold text-black cursor-default ${
+                className={`h-[22px] max-w-[170px] flex-1 min-w-[36px] sm:min-w-[80px] px-1 sm:px-2 flex items-center gap-1 sm:gap-1.5 truncate text-left text-win-caption font-bold text-black cursor-default ${
                   isActive
                     ? 'bevel-inset bg-[#ECE8DF]'
                     : 'bevel-outset-thin bg-win-face hover:bg-win-soft'
@@ -120,9 +120,9 @@ export const Taskbar: React.FC = () => {
         </div>
 
         {/* System Tray (Systray) */}
-        <div className="h-[22px] bevel-inset-thin bg-win-face px-2 flex items-center gap-2 text-win-caption text-black shrink-0">
-          <Volume2 className="w-3.5 h-3.5 text-gray-700" />
-          <Wifi className="w-3.5 h-3.5 text-gray-700" />
+        <div className="h-[22px] bevel-inset-thin bg-win-face px-1.5 sm:px-2 flex items-center gap-1.5 sm:gap-2 text-win-caption text-black shrink-0">
+          <Volume2 className="w-3.5 h-3.5 text-gray-700 hidden sm:block" />
+          <Wifi className="w-3.5 h-3.5 text-gray-700 hidden sm:block" />
           <span className="font-win tabular-nums text-[11px] leading-none">{time || '12:00'}</span>
         </div>
       </div>
