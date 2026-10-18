@@ -1,6 +1,6 @@
 import { WindowManagerProvider } from './context/WindowManagerContext';
 import { DesktopCanvas, WindowFrame } from './components/win2k';
-import { WinverWindow, ExplorerWindow, MmcWindow } from './components/apps';
+import { WinverWindow, ExplorerWindow, MmcWindow, RecycleBinWindow } from './components/apps';
 
 function PortfolioDesktop() {
   return (
@@ -42,6 +42,9 @@ function PortfolioDesktop() {
           </div>
         </div>
       </WindowFrame>
+
+      {/* Lixeira: Ideias Antigas e Bugs Superados */}
+      <RecycleBinWindow />
     </DesktopCanvas>
   );
 }

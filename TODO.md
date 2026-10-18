@@ -163,9 +163,9 @@
 - [x] **7.1 Responsividade Mobile & Tablet**
   - [x] Detecção de telas pequenas: abrir janelas maximizadas por padrão em resoluções < 768px.
   - [x] Barra de tarefas com rolagem horizontal ou botões compactados em telas menores.
-- [ ] **7.2 Lixeira e Easter Eggs**
-  - [ ] Ícone da Lixeira funcional no desktop com lista de "ideias antigas / bugs superados".
-  - [ ] Efeito sonoro clássico de inicialização (opcional, com mute ativado por padrão).
+- [x] **7.2 Lixeira e Easter Eggs**
+  - [x] Ícone da Lixeira funcional no desktop com lista de "ideias antigas / bugs superados".
+  - [x] Efeito sonoro clássico de inicialização (opcional, com mute ativado por padrão).
 - [ ] **7.3 Acessibilidade & SEO**
   - [ ] Meta tags, título semântico no `index.html` e acessibilidade via teclado (`Tab` e `Enter`).
 - [ ] **7.4 Build & Lint Verification**

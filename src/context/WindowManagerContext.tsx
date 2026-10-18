@@ -97,6 +97,19 @@ export const INITIAL_WINDOWS: Record<string, WindowState> = {
     defaultPosition: { x: 260, y: 140 },
     defaultSize: { width: 620, height: 400 },
   },
+  trash: {
+    id: 'trash',
+    title: 'Lixeira',
+    icon: 'trash',
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    zIndex: 14,
+    position: { x: 280, y: 130 },
+    size: { width: 640, height: 420 },
+    defaultPosition: { x: 280, y: 130 },
+    defaultSize: { width: 640, height: 420 },
+  },
 };
 
 export const initialWindowManagerState: WindowManagerState = {

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useWindowManager } from '../../context/WindowManagerContext';
 import { StartMenu } from './StartMenu';
-import { Monitor, Folder, FileText, Terminal, Volume2, Wifi } from 'lucide-react';
+import { Monitor, Folder, FileText, Terminal, Volume2, VolumeX, Wifi, Trash2 } from 'lucide-react';
+import { playStartupChime, getAudioMuted, setAudioMuted } from '../../utils/audioChime';
 
 export const Taskbar: React.FC = () => {
   const { state, focusWindow, minimizeWindow } = useWindowManager();
   const [isStartOpen, setIsStartOpen] = useState(false);
   const [time, setTime] = useState<string>('');
+  const [isMuted, setIsMuted] = useState<boolean>(getAudioMuted());
 
   useEffect(() => {
     const updateTime = () => {
@@ -23,6 +25,15 @@ export const Taskbar: React.FC = () => {
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const handleToggleAudio = () => {
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    setAudioMuted(nextMuted);
+    if (!nextMuted) {
+      playStartupChime();
+    }
+  };
 
   // Close start menu on outside click
   useEffect(() => {
@@ -57,6 +68,8 @@ export const Taskbar: React.FC = () => {
         return <FileText className="w-3.5 h-3.5 text-blue-500 shrink-0" />;
       case 'terminal':
         return <Terminal className="w-3.5 h-3.5 text-emerald-500 shrink-0" />;
+      case 'trash':
+        return <Trash2 className="w-3.5 h-3.5 text-gray-600 shrink-0" />;
       case 'computer':
       default:
         return <Monitor className="w-3.5 h-3.5 text-cyan-600 shrink-0" />;
@@ -121,7 +134,18 @@ export const Taskbar: React.FC = () => {
 
         {/* System Tray (Systray) */}
         <div className="h-[22px] bevel-inset-thin bg-win-face px-1.5 sm:px-2 flex items-center gap-1.5 sm:gap-2 text-win-caption text-black shrink-0">
-          <Volume2 className="w-3.5 h-3.5 text-gray-700 hidden sm:block" />
+          <button
+            type="button"
+            className="hidden sm:flex items-center justify-center p-0.5 hover:bg-win-soft cursor-pointer"
+            onClick={handleToggleAudio}
+            title={isMuted ? 'Áudio clássico desativado (Clique para ativar e ouvir o som Win2K)' : 'Áudio ativado (Clique para mutar)'}
+          >
+            {isMuted ? (
+              <VolumeX className="w-3.5 h-3.5 text-gray-500" />
+            ) : (
+              <Volume2 className="w-3.5 h-3.5 text-gray-800 animate-pulse" />
+            )}
+          </button>
           <Wifi className="w-3.5 h-3.5 text-gray-700 hidden sm:block" />
           <span className="font-win tabular-nums text-[11px] leading-none">{time || '12:00'}</span>
         </div>

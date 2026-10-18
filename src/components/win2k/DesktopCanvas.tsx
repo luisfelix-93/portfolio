@@ -62,6 +62,7 @@ export const DesktopCanvas: React.FC<DesktopCanvasProps> = ({ children }) => {
     {
       id: 'trash',
       label: 'Lixeira',
+      windowId: 'trash',
       icon: (
         <div className="w-9 h-9 flex items-center justify-center bg-gray-600/80 rounded-[2px] p-1.5 shadow">
           <Trash2 className="w-full h-full text-gray-200" />
@@ -79,8 +80,6 @@ export const DesktopCanvas: React.FC<DesktopCanvasProps> = ({ children }) => {
     e.stopPropagation();
     if (item.windowId) {
       openWindow(item.windowId);
-    } else if (item.id === 'trash') {
-      alert('Lixeira: 0 bugs pendentes, todas as tarefas em ordem!');
     }
   };
 
