@@ -88,10 +88,10 @@
 ## 📁 Fase 4: Tela 2 — Meus Projetos ("Windows Explorer" - `C:\Projetos`)
 *Meta: Navegador de arquivos do Windows Explorer exibindo o portfólio técnico de forma exploratória.*
 
-- [ ] **4.1 Estrutura do Windows Explorer (`ExplorerWindow.tsx`)**
-  - [ ] Barra de ferramentas com botões retrô: "Voltar", "Avançar", "Subir", "Visualizar".
-  - [ ] Barra de endereços com campo de texto exibindo `C:\Projetos\Destaques`.
-  - [ ] Barra de status inferior: contagem de itens e status de sincronização com o GitHub.
+- [x] **4.1 Estrutura do Windows Explorer (`ExplorerWindow.tsx`)**
+  - [x] Barra de ferramentas com botões retrô: "Voltar", "Avançar", "Subir", "Visualizar".
+  - [x] Barra de endereços com campo de texto exibindo `C:\Projetos\Destaques`.
+  - [x] Barra de status inferior: contagem de itens e status de sincronização com o GitHub.
 - [ ] **4.2 Painel Lateral Esquerdo (Tree View de Pastas)**
   - [ ] Árvore hierárquica navegável:
     - `[+] Meu Computador` -> `[-] Disco Local (C:)` -> `[v] Projetos`
