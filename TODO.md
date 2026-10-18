@@ -92,8 +92,8 @@
   - [x] Barra de ferramentas com botões retrô: "Voltar", "Avançar", "Subir", "Visualizar".
   - [x] Barra de endereços com campo de texto exibindo `C:\Projetos\Destaques`.
   - [x] Barra de status inferior: contagem de itens e status de sincronização com o GitHub.
-- [ ] **4.2 Painel Lateral Esquerdo (Tree View de Pastas)**
-  - [ ] Árvore hierárquica navegável:
+- [x] **4.2 Painel Lateral Esquerdo (Tree View de Pastas)**
+  - [x] Árvore hierárquica navegável:
     - `[+] Meu Computador` -> `[-] Disco Local (C:)` -> `[v] Projetos`
     - Subpastas de categorias: `DevOps & Infra`, `Full-Stack & Bots`, `Ferramentas Go/Shell`.
 - [ ] **4.3 Painel de Conteúdo de Projetos**

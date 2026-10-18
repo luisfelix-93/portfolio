@@ -66,3 +66,55 @@ describe('Phase 4.1 - ExplorerWindow Structure (Windows Explorer)', () => {
     assert.doesNotMatch(app, /id="explorer"/, 'App must not duplicate WindowFrame id="explorer"');
   });
 });
+
+describe('Phase 4.2 - Left Folders Tree View (Painel Lateral de Pastas)', () => {
+  test('4.2.1 - renders left aside panel with "Pastas" header and close button', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /aria-label="Árvore de Pastas"/, 'Must contain accessible aside label');
+    assert.match(code, />Pastas<\/span>/, 'Must display Pastas header');
+    assert.match(code, /title="Fechar painel Pastas"/, 'Must have button to close folders pane');
+  });
+
+  test('4.2.2 - renders hierarchical tree nodes: Meu Computador -> Disco Local (C:) -> Projetos', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /label:\s*'Meu Computador'/, 'Must define Meu Computador node');
+    assert.match(code, /label:\s*'Disco Local \(C:\)'/, 'Must define Disco Local (C:) node');
+    assert.match(code, /label:\s*'Projetos'/, 'Must define Projetos folder');
+    assert.match(code, /path:\s*'C:\\\\Projetos'/, 'Must target C:\\Projetos path');
+  });
+
+  test('4.2.3 - renders all category subfolders: DevOps & Infra, Full-Stack & Bots, Ferramentas Go/Shell', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /label:\s*'DevOps & Infra'/, 'Must contain DevOps & Infra folder');
+    assert.match(code, /label:\s*'Full-Stack & Bots'/, 'Must contain Full-Stack & Bots folder');
+    assert.match(code, /label:\s*'Ferramentas Go\/Shell'/, 'Must contain Ferramentas Go/Shell folder');
+    assert.match(code, /label:\s*'Destaques'/, 'Must contain Destaques folder');
+  });
+
+  test('4.2.4 - renders tree expand/collapse [+] and [-] triggers with aria labels', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /toggleExpand/, 'Must provide toggleExpand handler');
+    assert.match(code, /aria-label=\{isExpanded \? 'Recolher pasta' : 'Expandir pasta'\}/, 'Must have accessible expand/collapse label');
+    assert.match(code, /\{isExpanded \? '-' : '\+'\}/, 'Must visually display + and - signs');
+  });
+
+  test('4.2.5 - supports toggling folder pane via toolbar "Pastas" button', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /setShowFoldersPane\(!showFoldersPane\)/, 'Toolbar Pastas button must toggle showFoldersPane');
+    assert.match(code, /active=\{showFoldersPane\}/, 'Toolbar Pastas button must reflect active state');
+  });
+
+  test('4.2.6 - filters visible projects based on active folder category', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /getProjectsByCategory/, 'Must define category filtering logic');
+    assert.match(code, /resolveActiveCategory/, 'Must resolve category from active folder or path');
+    assert.match(code, /visibleProjects\.map/, 'Must render filtered visible projects');
+  });
+});
+
