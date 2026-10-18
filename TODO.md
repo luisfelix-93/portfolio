@@ -85,7 +85,7 @@
 
 ---
 
-## 📁 Fase 4: Tela 2 — Meus Projetos ("Windows Explorer" - `C:\Projetos`)
+## 📁 Fase 4: Tela 2 — Meus Projetos ("Windows Explorer" - `C:\Projetos`) ✅
 *Meta: Navegador de arquivos do Windows Explorer exibindo o portfólio técnico de forma exploratória.*
 
 - [x] **4.1 Estrutura do Windows Explorer (`ExplorerWindow.tsx`)**
@@ -104,8 +104,8 @@
     - `support-agent` (TypeScript)
   - [x] Cards com thumbnail retrô, resumo da solução e tags de stack.
   - [x] Botões Win32: `[ Executar / Demo ]` e `[ Repositório GitHub ]`.
-- [ ] **4.4 Integração com API do GitHub**
-  - [ ] Buscar métricas reais via `src/services/github.ts` (estrelas, forks, linguagens) para enriquecer a exibição.
+- [x] **4.4 Integração com API do GitHub**
+  - [x] Buscar métricas reais via `src/services/github.ts` (estrelas, forks, linguagens) para enriquecer a exibição.
 
 ---
 

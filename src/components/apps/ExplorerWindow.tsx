@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,9 +11,13 @@ import {
   HardDrive,
   Monitor,
   X,
+  Star,
+  GitFork,
+  RefreshCw,
 } from 'lucide-react';
 import { WindowFrame } from '../win2k';
 import { profileData } from '../../data/profile';
+import { getFeaturedProjectsMetrics, type RepoMetrics } from '../../services/github';
 
 const WINDOW_ID = 'explorer';
 const EXPLORER_MENUS = ['Arquivo', 'Editar', 'Exibir', 'Favoritos', 'Ferramentas', 'Ajuda'];
@@ -150,6 +154,30 @@ export const ExplorerWindow: React.FC = () => {
     'drive-c': true,
     projects: true,
   });
+  const [gitMetrics, setGitMetrics] = useState<Record<string, RepoMetrics>>({});
+  const [syncStatus, setSyncStatus] = useState<'loading' | 'synced' | 'offline'>('loading');
+
+  useEffect(() => {
+    let isMounted = true;
+
+    getFeaturedProjectsMetrics('luisfelix-93')
+      .then((data) => {
+        if (!isMounted) return;
+        if (data && Object.keys(data).length > 0) {
+          setGitMetrics(data);
+          setSyncStatus('synced');
+        } else {
+          setSyncStatus('offline');
+        }
+      })
+      .catch(() => {
+        if (isMounted) setSyncStatus('offline');
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const toggleExpand = (nodeId: string, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -278,9 +306,23 @@ export const ExplorerWindow: React.FC = () => {
           </div>
 
           {/* Célula 3: Sincronização GitHub & Zona de Segurança */}
-          <div className="bevel-inset-thin px-2 py-0.5 w-44 truncate bg-win-face flex items-center gap-1 text-gray-700">
-            <CheckCircle2 className="w-3 h-3 text-green-600 shrink-0" />
-            <span>100% sincronizado (GitHub)</span>
+          <div className="bevel-inset-thin px-2 py-0.5 w-48 truncate bg-win-face flex items-center gap-1 text-gray-700">
+            {syncStatus === 'loading' ? (
+              <>
+                <RefreshCw className="w-3 h-3 text-blue-600 animate-spin shrink-0" />
+                <span>Sincronizando GitHub...</span>
+              </>
+            ) : syncStatus === 'synced' ? (
+              <>
+                <CheckCircle2 className="w-3 h-3 text-green-600 shrink-0" />
+                <span>100% sincronizado (GitHub)</span>
+              </>
+            ) : (
+              <>
+                <CheckCircle2 className="w-3 h-3 text-gray-500 shrink-0" />
+                <span>Cache local (GitHub)</span>
+              </>
+            )}
           </div>
 
           {/* Célula 4: Ícone Meu Computador */}
@@ -424,6 +466,26 @@ export const ExplorerWindow: React.FC = () => {
                       </span>
                     </div>
 
+                    {/* Métricas do GitHub (Stars & Forks) */}
+                    {gitMetrics[p.name.toLowerCase()] && (
+                      <div className="mt-1.5 flex items-center gap-2 text-[10px] text-gray-700 font-mono">
+                        <span
+                          className="bevel-inset-thin px-1.5 py-0.5 bg-white flex items-center gap-1"
+                          title="Estrelas no GitHub"
+                        >
+                          <Star className="w-3 h-3 text-yellow-500 fill-yellow-500 shrink-0" />
+                          <span>{gitMetrics[p.name.toLowerCase()].stars} stars</span>
+                        </span>
+                        <span
+                          className="bevel-inset-thin px-1.5 py-0.5 bg-white flex items-center gap-1"
+                          title="Forks no GitHub"
+                        >
+                          <GitFork className="w-3 h-3 text-blue-600 shrink-0" />
+                          <span>{gitMetrics[p.name.toLowerCase()].forks} forks</span>
+                        </span>
+                      </div>
+                    )}
+
                     {/* Resumo da Solução */}
                     <p className="mt-2 text-win-caption text-gray-800 leading-relaxed min-h-[32px]">
                       {p.summary || 'Solução técnica desenvolvida com foco em alta disponibilidade e performance.'}
@@ -476,6 +538,7 @@ export const ExplorerWindow: React.FC = () => {
                   <tr className="bg-win-face select-none">
                     <th className="bevel-outset-thin px-2 py-1 font-bold text-black border-r border-win-shadow">Nome</th>
                     <th className="bevel-outset-thin px-2 py-1 font-bold text-black border-r border-win-shadow w-24">Linguagem</th>
+                    <th className="bevel-outset-thin px-2 py-1 font-bold text-black border-r border-win-shadow w-28">GitHub</th>
                     <th className="bevel-outset-thin px-2 py-1 font-bold text-black border-r border-win-shadow">Resumo da Solução</th>
                     <th className="bevel-outset-thin px-2 py-1 font-bold text-black text-center w-36">Ações</th>
                   </tr>
@@ -488,6 +551,22 @@ export const ExplorerWindow: React.FC = () => {
                         <span>{p.executable || p.name}</span>
                       </td>
                       <td className="px-2 py-1.5 font-mono text-gray-700">{p.language}</td>
+                      <td className="px-2 py-1.5 font-mono text-[10px] text-gray-700">
+                        {gitMetrics[p.name.toLowerCase()] ? (
+                          <span className="flex items-center gap-2">
+                            <span className="flex items-center gap-0.5" title="Stars">
+                              <Star className="w-2.5 h-2.5 text-yellow-500 fill-yellow-500" />
+                              {gitMetrics[p.name.toLowerCase()].stars}
+                            </span>
+                            <span className="flex items-center gap-0.5" title="Forks">
+                              <GitFork className="w-2.5 h-2.5 text-blue-600" />
+                              {gitMetrics[p.name.toLowerCase()].forks}
+                            </span>
+                          </span>
+                        ) : (
+                          <span>-</span>
+                        )}
+                      </td>
                       <td className="px-2 py-1.5 text-gray-800 leading-tight">
                         {p.summary || 'Projeto de Engenharia de Software e Plataforma'}
                       </td>

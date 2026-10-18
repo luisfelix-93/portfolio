@@ -174,4 +174,46 @@ describe('Phase 4.3 - Project Content Cards & Details View', () => {
   });
 });
 
+describe('Phase 4.4 - GitHub API Integration & Live Metrics', () => {
+  test('4.4.1 - src/services/github.ts exports getFeaturedProjectsMetrics and RepoMetrics interface', () => {
+    const service = readSource('src', 'services', 'github.ts');
+
+    assert.match(service, /export\s+interface\s+RepoMetrics/, 'Must export RepoMetrics');
+    assert.match(service, /export\s+const\s+getFeaturedProjectsMetrics/, 'Must export getFeaturedProjectsMetrics');
+    assert.match(service, /forks_count\?:/, 'Repo interface must include forks_count');
+  });
+
+  test('4.4.2 - ExplorerWindow imports and invokes getFeaturedProjectsMetrics', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /import \{[^}]*getFeaturedProjectsMetrics[^}]*\} from '\.\.\/\.\.\/services\/github'/, 'Must import getFeaturedProjectsMetrics');
+    assert.match(code, /getFeaturedProjectsMetrics\('luisfelix-93'\)/, 'Must fetch metrics for luisfelix-93');
+  });
+
+  test('4.4.3 - ExplorerWindow renders GitHub stars and forks metrics on cards', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /gitMetrics\[p\.name\.toLowerCase\(\)\]/, 'Must look up metrics by project name');
+    assert.match(code, /stars<\/span>|\.stars/, 'Must render stars count');
+    assert.match(code, /forks<\/span>|\.forks/, 'Must render forks count');
+  });
+
+  test('4.4.4 - status bar reflects live GitHub synchronization states', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /syncStatus === 'loading'/, 'Status bar must handle loading state');
+    assert.match(code, /syncStatus === 'synced'/, 'Status bar must handle synced state');
+    assert.match(code, /Sincronizando GitHub\.\.\./, 'Must display loading indicator');
+    assert.match(code, /100% sincronizado \(GitHub\)/, 'Must display synced indicator');
+  });
+
+  test('4.4.5 - details table includes GitHub metrics column', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, />GitHub<\/th>/, 'Table header must include GitHub column');
+    assert.match(code, /gitMetrics\[p\.name\.toLowerCase\(\)\]\.stars/, 'Table cell must render stars');
+  });
+});
+
+
 
