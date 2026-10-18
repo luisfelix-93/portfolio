@@ -185,6 +185,38 @@ body {
     box-shadow: inset 1px 1px 0px var(--win-shadow), inset -1px -1px 0px var(--win-soft);
     transform: translate(1px, 1px);
   }
+
+  /* winver.exe banner (classic Windows 2000 "About" header) */
+  .winver-banner {
+    background:
+      radial-gradient(ellipse at 85% 0%, rgba(166, 202, 240, 0.45) 0%, transparent 60%),
+      linear-gradient(135deg, #000000 0%, var(--win-selection) 55%, #3A6EA5 100%);
+  }
+
+  /* Retro photo filter: low-color CRT look with scanlines */
+  .retro-photo {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .retro-photo img {
+    filter: contrast(1.15) saturate(0.7) sepia(0.15);
+    image-rendering: pixelated;
+  }
+
+  .retro-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.18) 0px,
+      rgba(0, 0, 0, 0.18) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  }
 }
 
 @keyframes fade-in {

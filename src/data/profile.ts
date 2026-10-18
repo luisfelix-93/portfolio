@@ -2,8 +2,13 @@ import { Cloud, Code2, Server, Terminal } from "lucide-react";
 
 export const profileData = {
     name: "Luis Felipe Felix Filho",
-    title: "Platform Engineer | Cloud & Devops Specialist",
+    title: "Platform Engineer | Cloud & DevOps Specialist",
     about: "Specialist in transforming infrastructure into code. Focus on Kubernetes, automation, and development of internal tools in Go, Python, Shell and NodeJS",
+    system: {
+        version: "v2026",
+        build: "Build 2026.10 (Platform Engineering)",
+        specs: ["Kubernetes", "Terraform", "Go", "Python", "CI/CD", "AWS/Azure"],
+    },
     social: {
         linkedin: "https://www.linkedin.com/in/luis-felix-filho/",
         github: "https://github.com/luisfelix-93",

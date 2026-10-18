@@ -1,58 +1,13 @@
 import { WindowManagerProvider } from './context/WindowManagerContext';
 import { DesktopCanvas, WindowFrame } from './components/win2k';
+import { WinverWindow } from './components/apps';
 import { profileData } from './data/profile';
 
 function PortfolioDesktop() {
   return (
     <DesktopCanvas>
       {/* Tela 1: Apresentação - Quem Sou Eu */}
-      <WindowFrame
-        id="winver"
-        statusBar={
-          <div className="flex justify-between w-full text-win-caption text-gray-700">
-            <span>Sistema: Win2K Pro NT 5.0</span>
-            <span>Status: Online</span>
-          </div>
-        }
-      >
-        <div className="p-4 bg-white text-black text-win-body flex flex-col gap-3">
-          <div className="flex items-center gap-4 pb-3 border-b border-win-soft">
-            <div className="w-16 h-16 bg-gradient-to-br from-cyan-600 to-blue-800 text-white flex items-center justify-center font-bold text-xl shadow">
-              LF
-            </div>
-            <div>
-              <h1 className="text-win-headline text-win-selection">{profileData.name}</h1>
-              <p className="font-bold text-gray-700">{profileData.title}</p>
-              <p className="text-win-caption text-gray-500">Microsoft Windows 2000 Professional Edition</p>
-            </div>
-          </div>
-          <p className="leading-relaxed">{profileData.about}</p>
-          <div className="flex gap-3 pt-2">
-            <a
-              href={profileData.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-win-link underline"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={profileData.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-win-link underline"
-            >
-              GitHub
-            </a>
-            <a
-              href={`mailto:${profileData.social.email}`}
-              className="text-win-link underline"
-            >
-              {profileData.social.email}
-            </a>
-          </div>
-        </div>
-      </WindowFrame>
+      <WinverWindow />
 
       {/* Tela 2: Meus Projetos (Windows Explorer) */}
       <WindowFrame
