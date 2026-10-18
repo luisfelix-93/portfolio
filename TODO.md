@@ -85,27 +85,27 @@
 
 ---
 
-## 📁 Fase 4: Tela 2 — Meus Projetos ("Windows Explorer" - `C:\Projetos`)
+## 📁 Fase 4: Tela 2 — Meus Projetos ("Windows Explorer" - `C:\Projetos`) ✅
 *Meta: Navegador de arquivos do Windows Explorer exibindo o portfólio técnico de forma exploratória.*
 
-- [ ] **4.1 Estrutura do Windows Explorer (`ExplorerWindow.tsx`)**
-  - [ ] Barra de ferramentas com botões retrô: "Voltar", "Avançar", "Subir", "Visualizar".
-  - [ ] Barra de endereços com campo de texto exibindo `C:\Projetos\Destaques`.
-  - [ ] Barra de status inferior: contagem de itens e status de sincronização com o GitHub.
-- [ ] **4.2 Painel Lateral Esquerdo (Tree View de Pastas)**
-  - [ ] Árvore hierárquica navegável:
+- [x] **4.1 Estrutura do Windows Explorer (`ExplorerWindow.tsx`)**
+  - [x] Barra de ferramentas com botões retrô: "Voltar", "Avançar", "Subir", "Visualizar".
+  - [x] Barra de endereços com campo de texto exibindo `C:\Projetos\Destaques`.
+  - [x] Barra de status inferior: contagem de itens e status de sincronização com o GitHub.
+- [x] **4.2 Painel Lateral Esquerdo (Tree View de Pastas)**
+  - [x] Árvore hierárquica navegável:
     - `[+] Meu Computador` -> `[-] Disco Local (C:)` -> `[v] Projetos`
     - Subpastas de categorias: `DevOps & Infra`, `Full-Stack & Bots`, `Ferramentas Go/Shell`.
-- [ ] **4.3 Painel de Conteúdo de Projetos**
-  - [ ] Listagem dos projetos reais de `profileData.featuredProjects`:
+- [x] **4.3 Painel de Conteúdo de Projetos**
+  - [x] Listagem dos projetos reais de `profileData.featuredProjects`:
     - `load-tester` (Shell)
     - `jobs-bot` (Go)
     - `lab-devops` (Go)
     - `support-agent` (TypeScript)
-  - [ ] Cards com thumbnail retrô, resumo da solução e tags de stack.
-  - [ ] Botões Win32: `[ Executar / Demo ]` e `[ Repositório GitHub ]`.
-- [ ] **4.4 Integração com API do GitHub**
-  - [ ] Buscar métricas reais via `src/services/github.ts` (estrelas, forks, linguagens) para enriquecer a exibição.
+  - [x] Cards com thumbnail retrô, resumo da solução e tags de stack.
+  - [x] Botões Win32: `[ Executar / Demo ]` e `[ Repositório GitHub ]`.
+- [x] **4.4 Integração com API do GitHub**
+  - [x] Buscar métricas reais via `src/services/github.ts` (estrelas, forks, linguagens) para enriquecer a exibição.
 
 ---
 

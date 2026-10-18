@@ -1,6 +1,6 @@
 import { WindowManagerProvider } from './context/WindowManagerContext';
 import { DesktopCanvas, WindowFrame } from './components/win2k';
-import { WinverWindow } from './components/apps';
+import { WinverWindow, ExplorerWindow } from './components/apps';
 import { profileData } from './data/profile';
 
 function PortfolioDesktop() {
@@ -10,46 +10,7 @@ function PortfolioDesktop() {
       <WinverWindow />
 
       {/* Tela 2: Meus Projetos (Windows Explorer) */}
-      <WindowFrame
-        id="explorer"
-        statusBar={
-          <div className="flex justify-between w-full text-win-caption text-gray-700">
-            <span>{profileData.featuredProjects.length} objeto(s) selecionado(s)</span>
-            <span>100% de disponibilidade no GitHub</span>
-          </div>
-        }
-      >
-        <div className="p-3 bg-white text-black text-win-body">
-          <div className="bg-win-face p-1 bevel-inset-thin mb-3 text-win-caption flex items-center gap-1">
-            <span className="font-bold">Endereço:</span>
-            <span className="bg-white px-2 py-0.5 flex-1 border border-win-shadow">
-              C:\Projetos\Destaques
-            </span>
-          </div>
-          <div className="grid grid-cols-2 gap-3">
-            {profileData.featuredProjects.map((p) => (
-              <div key={p.name} className="bevel-outset p-2 bg-win-face flex flex-col justify-between">
-                <div>
-                  <h3 className="font-bold text-win-title text-win-selection">{p.name}</h3>
-                  <span className="text-[10px] bg-win-selection text-white px-1.5 py-0.2 rounded-none inline-block my-1">
-                    {p.language}
-                  </span>
-                </div>
-                <div className="flex gap-2 mt-2">
-                  <a
-                    href={p.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="win-button text-win-caption"
-                  >
-                    Repositório
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </WindowFrame>
+      <ExplorerWindow />
 
       {/* Tela 3: Experiência Profissional (MMC) */}
       <WindowFrame

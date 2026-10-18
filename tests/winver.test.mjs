@@ -113,7 +113,7 @@ describe('Phase 3.1 - styles & integration', () => {
   test('3.1.11 - App renders WinverWindow instead of inline winver markup', () => {
     const app = readSource('src', 'App.tsx');
 
-    assert.match(app, /import \{ WinverWindow \} from '\.\/components\/apps'/, 'App must import WinverWindow');
+    assert.match(app, /import \{[^}]*WinverWindow[^}]*\} from '\.\/components\/apps'/, 'App must import WinverWindow');
     assert.match(app, /<WinverWindow\s*\/>/, 'App must render <WinverWindow />');
     assert.doesNotMatch(app, /id="winver"/, 'App must not duplicate the winver WindowFrame');
   });
