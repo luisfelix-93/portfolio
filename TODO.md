@@ -112,24 +112,24 @@
 ## 💼 Fase 5: Tela 3 — Experiência Profissional ("MMC / Central de Ajuda")
 *Meta: Linha do tempo corporativa e competências estruturadas na metáfora de console administrativo.*
 
-- [ ] **5.1 Estrutura do Console (`MmcWindow.tsx`)**
-  - [ ] Interface baseada no Microsoft Management Console (`mmc.exe`) ou Ajuda (`hh.exe`).
-  - [ ] Painel esquerdo com índice de tópicos:
+- [x] **5.1 Estrutura do Console (`MmcWindow.tsx`)**
+  - [x] Interface baseada no Microsoft Management Console (`mmc.exe`) ou Ajuda (`hh.exe`).
+  - [x] Painel esquerdo com índice de tópicos:
     - *Histórico Profissional*
     - *Habilidades Técnicas & Métricas*
     - *Formação & Certificações*
-- [ ] **5.2 Painel de Conteúdo: Histórico Profissional**
-  - [ ] Renderizar cargos a partir de `profileData.experience`:
+- [x] **5.2 Painel de Conteúdo: Histórico Profissional**
+  - [x] Renderizar cargos a partir de `profileData.experience`:
     - Ligo (Software Engineer - Platform & SRE)
     - Code7 (Infrastructure Support Analyst)
     - Code7 (Software Engineer .NET)
     - Menendez & Menendez (Automation & Development)
     - A Solução Engenharia (.NET Automation)
-  - [ ] Descrições com bullets, conquistas e tags de tecnologias.
-- [ ] **5.3 Medidores de Habilidades Técnicas**
-  - [ ] Barras de progresso com blocos segmentados clássicos (ex: Kubernetes, Terraform, Go, CI/CD, AWS).
-- [ ] **5.4 Ação de Download do Currículo**
-  - [ ] Botão Win32 `[ Baixar Currículo (.PDF) ]` integrado à geração existente `jspdf` com `docs/resume.md`.
+  - [x] Descrições com bullets, conquistas e tags de tecnologias.
+- [x] **5.3 Matriz de Competências Técnicas (Tabela MMC)**
+  - [x] Matriz de tecnologias em tabela MMC Snap-in (colunas: Tecnologia, Categoria, Aplicação Prática em Prod e Status).
+- [x] **5.4 Ação de Download do Currículo**
+  - [x] Botão Win32 `[ Baixar Currículo (.PDF) ]` integrado à geração existente `jspdf` com `docs/resume.md`.
 
 ---
 

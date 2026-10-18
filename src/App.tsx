@@ -1,7 +1,6 @@
 import { WindowManagerProvider } from './context/WindowManagerContext';
 import { DesktopCanvas, WindowFrame } from './components/win2k';
-import { WinverWindow, ExplorerWindow } from './components/apps';
-import { profileData } from './data/profile';
+import { WinverWindow, ExplorerWindow, MmcWindow } from './components/apps';
 
 function PortfolioDesktop() {
   return (
@@ -13,35 +12,7 @@ function PortfolioDesktop() {
       <ExplorerWindow />
 
       {/* Tela 3: Experiência Profissional (MMC) */}
-      <WindowFrame
-        id="mmc"
-        statusBar={
-          <div className="flex justify-between w-full text-win-caption text-gray-700">
-            <span>Microsoft Management Console v1.2</span>
-            <span>{profileData.experience.length} Registros</span>
-          </div>
-        }
-      >
-        <div className="p-3 bg-white text-black text-win-body flex flex-col gap-3">
-          <h2 className="font-bold text-win-headline text-win-selection">
-            Histórico Corporativo & Registros Profissionais
-          </h2>
-          <div className="flex flex-col gap-3">
-            {profileData.experience.slice(0, 3).map((exp) => (
-              <div key={exp.id} className="bevel-inset-thin p-2 bg-[#F9F8F5]">
-                <div className="flex justify-between font-bold text-win-title">
-                  <span>{exp.role}</span>
-                  <span className="text-win-selection">{exp.company}</span>
-                </div>
-                <span className="text-win-caption text-gray-600">{exp.period}</span>
-                <p className="mt-1 text-win-body whitespace-pre-line text-gray-800 line-clamp-3">
-                  {exp.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </WindowFrame>
+      <MmcWindow />
 
       {/* Tela 4: Terminal Homelab (PuTTY) */}
       <WindowFrame
