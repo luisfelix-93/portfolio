@@ -14,6 +14,9 @@ import {
   CheckCircle2,
   Award,
   Globe2,
+  Building2,
+  Calendar,
+  MapPin,
 } from 'lucide-react';
 import { WindowFrame } from '../win2k';
 import { profileData } from '../../data/profile';
@@ -271,24 +274,72 @@ export const MmcWindow: React.FC = () => {
               {profileData.experience.map((exp) => (
                 <article
                   key={exp.id}
-                  className="bevel-inset-thin p-2.5 bg-[#FAF9F5] flex flex-col gap-1.5"
+                  className="bevel-inset-thin p-3 bg-[#FAF9F5] flex flex-col gap-2"
                 >
-                  <div className="flex flex-wrap justify-between items-baseline gap-1 border-b border-win-soft/60 pb-1">
-                    <span className="font-bold text-win-title text-black">{exp.role}</span>
-                    <span className="font-bold text-win-selection bg-blue-50 px-1.5 py-0.2 border border-blue-200">
-                      {exp.company}
-                    </span>
+                  {/* Cabeçalho da Experiência: Cargo, Empresa e Status */}
+                  <div className="flex flex-wrap justify-between items-start gap-1 border-b border-win-soft/60 pb-1.5">
+                    <div className="flex items-start gap-1.5 min-w-0">
+                      <Briefcase className="w-4 h-4 text-win-selection shrink-0 mt-0.5" />
+                      <div>
+                        <h3 className="font-bold text-win-title text-black leading-snug">{exp.role}</h3>
+                        <div className="flex items-center gap-1.5 text-win-caption text-gray-700 mt-0.5">
+                          <span className="font-bold text-win-selection flex items-center gap-1">
+                            <Building2 className="w-3 h-3 text-win-selection shrink-0" />
+                            {exp.company}
+                          </span>
+                          {exp.location && (
+                            <>
+                              <span className="text-gray-400">•</span>
+                              <span className="text-gray-600 flex items-center gap-0.5">
+                                <MapPin className="w-3 h-3 text-gray-500 shrink-0" />
+                                {exp.location}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0 ml-auto sm:ml-0">
+                      {exp.isCurrent && (
+                        <span className="text-[10px] bg-green-100 text-green-800 px-1.5 py-0.2 border border-green-300 font-mono font-bold flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-green-600 animate-pulse" />
+                          Atual
+                        </span>
+                      )}
+                      <span className="text-[10px] bg-win-face border border-win-shadow px-1.5 py-0.2 font-mono text-gray-700 flex items-center gap-1">
+                        <Calendar className="w-3 h-3 text-gray-600 shrink-0" />
+                        {exp.period}
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-win-caption text-gray-600 font-mono">{exp.period}</span>
-                  <p className="text-win-body whitespace-pre-line text-gray-800 leading-relaxed">
-                    {exp.description}
-                  </p>
+
+                  {/* Bullets / Conquistas Técnicas */}
+                  <div className="text-win-body text-gray-800">
+                    {exp.highlights && exp.highlights.length > 0 ? (
+                      <ul className="flex flex-col gap-1 pl-1">
+                        {exp.highlights.map((bullet, idx) => (
+                          <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
+                            <span className="text-win-selection font-bold select-none text-[10px] mt-0.5 leading-none">
+                              ▸
+                            </span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="whitespace-pre-line leading-relaxed">{exp.description}</p>
+                    )}
+                  </div>
+
+                  {/* Tags de Tecnologias / Competências */}
                   {exp.skills && exp.skills.length > 0 && (
-                    <div className="mt-1 flex flex-wrap gap-1 pt-1 border-t border-win-soft/50">
+                    <div className="mt-1 pt-1.5 border-t border-win-soft/50 flex flex-wrap items-center gap-1">
+                      <span className="text-[10px] font-bold text-gray-600 mr-1">Stack:</span>
                       {exp.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="bevel-outset-thin bg-win-face text-black px-1.5 py-0.2 text-[9px] font-mono"
+                          className="bevel-outset-thin bg-win-face text-black px-1.5 py-0.2 text-[9px] font-mono hover:bg-white"
                         >
                           {skill}
                         </span>

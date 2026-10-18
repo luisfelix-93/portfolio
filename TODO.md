@@ -118,14 +118,14 @@
     - *Histórico Profissional*
     - *Habilidades Técnicas & Métricas*
     - *Formação & Certificações*
-- [ ] **5.2 Painel de Conteúdo: Histórico Profissional**
-  - [ ] Renderizar cargos a partir de `profileData.experience`:
+- [x] **5.2 Painel de Conteúdo: Histórico Profissional**
+  - [x] Renderizar cargos a partir de `profileData.experience`:
     - Ligo (Software Engineer - Platform & SRE)
     - Code7 (Infrastructure Support Analyst)
     - Code7 (Software Engineer .NET)
     - Menendez & Menendez (Automation & Development)
     - A Solução Engenharia (.NET Automation)
-  - [ ] Descrições com bullets, conquistas e tags de tecnologias.
+  - [x] Descrições com bullets, conquistas e tags de tecnologias.
 - [ ] **5.3 Medidores de Habilidades Técnicas**
   - [ ] Barras de progresso com blocos segmentados clássicos (ex: Kubernetes, Terraform, Go, CI/CD, AWS).
 - [ ] **5.4 Ação de Download do Currículo**

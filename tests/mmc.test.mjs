@@ -73,3 +73,60 @@ describe('Phase 5.1 - MMC Console Structure (MmcWindow.tsx)', () => {
     assert.doesNotMatch(app, /WindowFrame\s+id="mmc"/, 'App must not duplicate WindowFrame id="mmc"');
   });
 });
+
+describe('Phase 5.2 - MMC Experience Panel Content', () => {
+  test('5.2.1 - profileData.experience contains all 5 companies and roles', () => {
+    const profile = readSource('src', 'data', 'profile.ts');
+
+    assert.match(profile, /company:\s*"Ligo"/, 'Must include Ligo');
+    assert.strictEqual((profile.match(/company:\s*"Code7"/g) || []).length, 2, 'Must include 2 positions at Code7');
+    assert.match(profile, /company:\s*"Menendez & Menendez"/, 'Must include Menendez & Menendez');
+    assert.match(profile, /company:\s*"A Solução Engenharia"/, 'Must include A Solução Engenharia');
+  });
+
+  test('5.2.2 - each experience entry defines role, company, period, highlights, and skills', () => {
+    const profile = readSource('src', 'data', 'profile.ts');
+    const expBlockMatch = profile.match(/experience:\s*\[([\s\S]*?)\]\s*,\s*featuredProjects:/);
+    assert.ok(expBlockMatch, 'experience array must exist');
+    const expBlock = expBlockMatch[1];
+
+    assert.strictEqual((expBlock.match(/role:\s*"/g) || []).length, 5, 'Must define 5 roles');
+    assert.strictEqual((expBlock.match(/company:\s*"/g) || []).length, 5, 'Must define 5 companies');
+    assert.strictEqual((expBlock.match(/period:\s*"/g) || []).length, 5, 'Must define 5 periods');
+    assert.strictEqual((expBlock.match(/location:\s*"/g) || []).length, 5, 'Must define 5 locations');
+    assert.strictEqual((expBlock.match(/highlights:\s*\[/g) || []).length, 5, 'Must define 5 highlights arrays');
+    assert.strictEqual((expBlock.match(/skills:\s*\[/g) || []).length, 5, 'Must define 5 skills arrays');
+  });
+
+  test('5.2.3 - MmcWindow renders corporate experience cards with metadata and retro icons', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /profileData\.experience\.map/, 'Must map through profileData.experience');
+    assert.match(code, /exp\.role/, 'Must display exp.role');
+    assert.match(code, /exp\.company/, 'Must display exp.company');
+    assert.match(code, /exp\.location/, 'Must display exp.location');
+    assert.match(code, /exp\.period/, 'Must display exp.period');
+  });
+
+  test('5.2.4 - MmcWindow renders bulleted achievements with retro markers', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /exp\.highlights/, 'Must support exp.highlights array');
+    assert.match(code, />\s*▸\s*<\/span>/, 'Must render retro bullet marker');
+  });
+
+  test('5.2.5 - MmcWindow renders technology tags with Win2K chip styling', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /exp\.skills\.map/, 'Must map through exp.skills');
+    assert.match(code, /Stack:/, 'Must label tech stack chips');
+    assert.match(code, /bevel-outset-thin bg-win-face/, 'Skill chips must use Win2K bevel-outset-thin');
+  });
+
+  test('5.2.6 - MmcWindow indicates active position with current badge', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /exp\.isCurrent/, 'Must check exp.isCurrent flag');
+    assert.match(code, /Atual/, 'Must render active role badge');
+  });
+});
