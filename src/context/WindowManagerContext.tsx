@@ -49,9 +49,9 @@ export const INITIAL_WINDOWS: Record<string, WindowState> = {
     isMaximized: false,
     zIndex: 10,
     position: { x: 80, y: 50 },
-    size: { width: 520, height: 420 },
+    size: { width: 560, height: 520 },
     defaultPosition: { x: 80, y: 50 },
-    defaultSize: { width: 520, height: 420 },
+    defaultSize: { width: 560, height: 520 },
   },
   explorer: {
     id: 'explorer',

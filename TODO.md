@@ -68,20 +68,20 @@
 
 ---
 
-## 👤 Fase 3: Tela 1 — Apresentação ("Quem Sou Eu" / `winver.exe`)
+## 👤 Fase 3: Tela 1 — Apresentação ("Quem Sou Eu" / `winver.exe`) ✅
 *Meta: Primeira impressão do recrutador apresentando Luis Felipe com estética de specs de sistema.*
 
-- [ ] **3.1 Componente `WinverWindow.tsx`**
-  - [ ] Cabeçalho com banner clássico do Windows 2000 / Foto de perfil com filtro retrô.
-  - [ ] Bloco de especificações de sistema:
+- [x] **3.1 Componente `WinverWindow.tsx`**
+  - [x] Cabeçalho com banner clássico do Windows 2000 / Foto de perfil com filtro retrô.
+  - [x] Bloco de especificações de sistema:
     - Sistema: "Luis Felipe Felix Filho - v2026".
     - Função: "Platform Engineer | Cloud & DevOps Specialist".
     - Specs: Kubernetes, Terraform, Go, Python, CI/CD, AWS/Azure.
-- [ ] **3.2 Bio e Hiperlinks de Contato**
-  - [ ] Resumo profissional baseado em `src/data/profile.ts`.
-  - [ ] Links sociais estilizados como links do Win32 (`#0000EE` sublinhado): LinkedIn, GitHub, Email.
-- [ ] **3.3 Integração com Desktop**
-  - [ ] Ícone na Área de Trabalho "Meu Computador" configurado para abrir esta janela por padrão no boot.
+- [x] **3.2 Bio e Hiperlinks de Contato**
+  - [x] Resumo profissional baseado em `src/data/profile.ts`.
+  - [x] Links sociais estilizados como links do Win32 (`#0000EE` sublinhado): LinkedIn, GitHub, Email.
+- [x] **3.3 Integração com Desktop**
+  - [x] Ícone na Área de Trabalho "Meu Computador" configurado para abrir esta janela por padrão no boot.
 
 ---
 
