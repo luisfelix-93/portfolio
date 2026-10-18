@@ -1,4 +1,9 @@
-import { createContext, useContext, useReducer, type ReactNode } from 'react';
+import { createContext, useContext, useReducer, useEffect, type ReactNode } from 'react';
+
+export const isSmallScreen = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < 768;
+};
 
 export interface WindowPosition {
   x: number;
@@ -92,6 +97,19 @@ export const INITIAL_WINDOWS: Record<string, WindowState> = {
     defaultPosition: { x: 260, y: 140 },
     defaultSize: { width: 620, height: 400 },
   },
+  trash: {
+    id: 'trash',
+    title: 'Lixeira',
+    icon: 'trash',
+    isOpen: false,
+    isMinimized: false,
+    isMaximized: false,
+    zIndex: 14,
+    position: { x: 280, y: 130 },
+    size: { width: 640, height: 420 },
+    defaultPosition: { x: 280, y: 130 },
+    defaultSize: { width: 640, height: 420 },
+  },
 };
 
 export const initialWindowManagerState: WindowManagerState = {
@@ -110,6 +128,8 @@ export function windowManagerReducer(
       if (!win) return state;
 
       const newZ = state.highestZIndex + 1;
+      const shouldMaximize = isSmallScreen() || win.isMaximized;
+
       return {
         ...state,
         highestZIndex: newZ,
@@ -120,6 +140,7 @@ export function windowManagerReducer(
             ...win,
             isOpen: true,
             isMinimized: false,
+            isMaximized: shouldMaximize,
             zIndex: newZ,
           },
         },
@@ -288,6 +309,17 @@ const WindowManagerContext = createContext<WindowManagerContextType | undefined>
 
 export function WindowManagerProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(windowManagerReducer, initialWindowManagerState);
+
+  // Detecção de telas pequenas: abre/maximiza janelas por padrão em resoluções < 768px
+  useEffect(() => {
+    if (isSmallScreen()) {
+      Object.values(state.windows).forEach((w) => {
+        if (w.isOpen && !w.isMaximized) {
+          dispatch({ type: 'TOGGLE_MAXIMIZE', payload: { id: w.id } });
+        }
+      });
+    }
+  }, []);
 
   const openWindow = (id: string) => dispatch({ type: 'OPEN_WINDOW', payload: { id } });
   const closeWindow = (id: string) => dispatch({ type: 'CLOSE_WINDOW', payload: { id } });
