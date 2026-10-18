@@ -88,11 +88,13 @@ test('Phase 2 Code Verification - App.tsx integration with data/profile', () => 
   const appPath = path.join(projectRoot, 'src', 'App.tsx');
   const winverPath = path.join(projectRoot, 'src', 'components', 'apps', 'WinverWindow.tsx');
   const explorerPath = path.join(projectRoot, 'src', 'components', 'apps', 'ExplorerWindow.tsx');
+  const mmcPath = path.join(projectRoot, 'src', 'components', 'apps', 'MmcWindow.tsx');
   assert.ok(fs.existsSync(appPath), 'src/App.tsx exists');
   const code =
     fs.readFileSync(appPath, 'utf8') +
     fs.readFileSync(winverPath, 'utf8') +
-    fs.readFileSync(explorerPath, 'utf8');
+    fs.readFileSync(explorerPath, 'utf8') +
+    fs.readFileSync(mmcPath, 'utf8');
 
   assert.match(code, /profileData\.name/);
   assert.match(code, /profileData\.featuredProjects/);

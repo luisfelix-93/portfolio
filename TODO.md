@@ -112,9 +112,9 @@
 ## 💼 Fase 5: Tela 3 — Experiência Profissional ("MMC / Central de Ajuda")
 *Meta: Linha do tempo corporativa e competências estruturadas na metáfora de console administrativo.*
 
-- [ ] **5.1 Estrutura do Console (`MmcWindow.tsx`)**
-  - [ ] Interface baseada no Microsoft Management Console (`mmc.exe`) ou Ajuda (`hh.exe`).
-  - [ ] Painel esquerdo com índice de tópicos:
+- [x] **5.1 Estrutura do Console (`MmcWindow.tsx`)**
+  - [x] Interface baseada no Microsoft Management Console (`mmc.exe`) ou Ajuda (`hh.exe`).
+  - [x] Painel esquerdo com índice de tópicos:
     - *Histórico Profissional*
     - *Habilidades Técnicas & Métricas*
     - *Formação & Certificações*

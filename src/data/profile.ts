@@ -120,5 +120,34 @@ export const profileData = {
             summary: "Agente autônomo de atendimento e suporte técnico com inteligência artificial para categorização e resposta de chamados.",
             tags: ["TypeScript", "AI Agent", "LLM", "Node.js"],
         },
+    ],
+    education: [
+        {
+            id: 1,
+            institution: "Universidade Federal de Sergipe (UFS)",
+            degree: "Bacharelado em Engenharia Mecânica",
+            location: "Brasil",
+            status: "Graduado",
+        },
+        {
+            id: 2,
+            institution: "Polytech Orléans",
+            degree: "Programa de Intercâmbio em Energia, Aeronáutica & Tecnologias de Motores",
+            location: "Orléans, França",
+            status: "Concluído",
+        },
+    ],
+    languages: [
+        { language: "Português", level: "Nativo" },
+        { language: "Inglês", level: "Fluente (C1)" },
+        { language: "Francês", level: "Fluente (C1)" },
+        { language: "Alemão", level: "Proficiente (A2/B1)" },
+    ],
+    technicalMetrics: [
+        { label: "Uptime em Produção", value: "99.9%", detail: "SLA cumprido em clusters Kubernetes" },
+        { label: "Transações Mensais", value: "5M+", detail: "Plataformas de alta escala monitoradas" },
+        { label: "Requisições Diárias", value: "10k+", detail: "Microsserviços em produção" },
+        { label: "Redução de Latência", value: "50%", detail: "Otimização de filas assíncronas com RabbitMQ" },
+        { label: "Downtime em Deployments", value: "0", detail: "Pipelines CI/CD com ArgoCD e GitLab CI" },
     ]
 }
