@@ -118,3 +118,60 @@ describe('Phase 4.2 - Left Folders Tree View (Painel Lateral de Pastas)', () => 
   });
 });
 
+describe('Phase 4.3 - Project Content Cards & Details View', () => {
+  test('4.3.1 - lists all 4 real projects from profileData.featuredProjects', () => {
+    const profile = readSource('src', 'data', 'profile.ts');
+
+    for (const name of ['load-tester', 'jobs-bot', 'lab-devops', 'support-agent']) {
+      assert.ok(profile.includes(`name: "${name}"`), `profile.ts must contain project: ${name}`);
+    }
+  });
+
+  test('4.3.2 - renders retro Win2K thumbnail bar with executable name and CRT look', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /p\.executable\s*\|\|\s*`\$\{p\.name\}\.exe`/, 'Must display executable name in retro titlebar');
+    assert.match(code, /text-terminal-green/, 'Must use CRT phosphor terminal styling in thumbnail preview');
+    assert.match(code, /WIN32/, 'Must render WIN32 retro badge in card header');
+  });
+
+  test('4.3.3 - renders solution summary and technical descriptions', () => {
+    const profile = readSource('src', 'data', 'profile.ts');
+    const code = readSource(...explorerPath);
+
+    assert.match(profile, /summary:\s*"Utilitário em Shell Script/, 'load-tester must have solution summary');
+    assert.match(profile, /summary:\s*"Bot em Go/, 'jobs-bot must have solution summary');
+    assert.match(profile, /summary:\s*"Laboratório prático/, 'lab-devops must have solution summary');
+    assert.match(profile, /summary:\s*"Agente autônomo/, 'support-agent must have solution summary');
+    assert.match(code, /p\.summary/, 'ExplorerWindow must render project summary');
+  });
+
+  test('4.3.4 - renders stack tags with Win32 inset styling', () => {
+    const profile = readSource('src', 'data', 'profile.ts');
+    const code = readSource(...explorerPath);
+
+    assert.match(profile, /tags:\s*\["Shell"/, 'Projects must include stack tags in profile');
+    assert.match(code, /p\.tags\.map/, 'ExplorerWindow must iterate over tags');
+    assert.match(code, /bevel-inset-thin bg-\[#F3F1EC\]/, 'Tags must be styled with Win32 bevel inset');
+  });
+
+  test('4.3.5 - renders Win32 buttons: [ Executar / Demo ] and [ Repositório GitHub ]', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /Executar \/ Demo/, 'Must render Executar / Demo button');
+    assert.match(code, /Repositório GitHub/, 'Must render Repositório GitHub button');
+    assert.match(code, /className="win-button[^"]*font-bold"/, 'Executar button must use prominent Win32 button styling');
+  });
+
+  test('4.3.6 - supports details table view mode with column headers', () => {
+    const code = readSource(...explorerPath);
+
+    assert.match(code, /<table/, 'Must render table element in details mode');
+    assert.match(code, />Nome<\/th>/, 'Must include Nome column header');
+    assert.match(code, />Linguagem<\/th>/, 'Must include Linguagem column header');
+    assert.match(code, />Resumo da Solução<\/th>/, 'Must include Resumo da Solução column header');
+    assert.match(code, />Ações<\/th>/, 'Must include Ações column header');
+  });
+});
+
+

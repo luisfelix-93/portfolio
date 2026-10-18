@@ -96,14 +96,14 @@
   - [x] Árvore hierárquica navegável:
     - `[+] Meu Computador` -> `[-] Disco Local (C:)` -> `[v] Projetos`
     - Subpastas de categorias: `DevOps & Infra`, `Full-Stack & Bots`, `Ferramentas Go/Shell`.
-- [ ] **4.3 Painel de Conteúdo de Projetos**
-  - [ ] Listagem dos projetos reais de `profileData.featuredProjects`:
+- [x] **4.3 Painel de Conteúdo de Projetos**
+  - [x] Listagem dos projetos reais de `profileData.featuredProjects`:
     - `load-tester` (Shell)
     - `jobs-bot` (Go)
     - `lab-devops` (Go)
     - `support-agent` (TypeScript)
-  - [ ] Cards com thumbnail retrô, resumo da solução e tags de stack.
-  - [ ] Botões Win32: `[ Executar / Demo ]` e `[ Repositório GitHub ]`.
+  - [x] Cards com thumbnail retrô, resumo da solução e tags de stack.
+  - [x] Botões Win32: `[ Executar / Demo ]` e `[ Repositório GitHub ]`.
 - [ ] **4.4 Integração com API do GitHub**
   - [ ] Buscar métricas reais via `src/services/github.ts` (estrelas, forks, linguagens) para enriquecer a exibição.
 

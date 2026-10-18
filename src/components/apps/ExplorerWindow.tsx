@@ -392,48 +392,133 @@ export const ExplorerWindow: React.FC = () => {
             <span>{visibleProjects.length} objeto(s)</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {visibleProjects.map((p) => (
-              <div
-                key={p.name}
-                className="bevel-outset p-2.5 bg-win-face flex flex-col justify-between hover:border-win-selection transition-none select-none"
-              >
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <Folder className="w-4 h-4 text-yellow-500 fill-yellow-400 shrink-0" />
-                    <h3 className="font-bold text-win-title text-win-selection truncate">{p.name}</h3>
-                  </div>
-                  <div className="mt-1 flex items-center gap-1.5">
-                    <span className="text-[10px] bg-win-selection text-white px-1.5 py-0.2 font-mono">
-                      {p.language}
-                    </span>
-                    <span className="text-[10px] text-gray-600">Repositório Git</span>
-                  </div>
-                </div>
+          {viewMode === 'icons' ? (
+            /* Modo Ícones / Cards Retrô */
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3.5">
+              {visibleProjects.map((p) => (
+                <article
+                  key={p.name}
+                  className="bevel-outset p-2.5 bg-win-face flex flex-col justify-between select-none"
+                >
+                  <div>
+                    {/* Thumbnail Retrô Win2K com Moldura de Mini-Janela / CRT */}
+                    <div className="bevel-inset-thin bg-black mb-2 overflow-hidden flex flex-col">
+                      <div className="h-4 px-1.5 bg-gradient-to-r from-win-title-activeStart to-win-title-activeEnd flex items-center justify-between text-white text-[9px] font-bold">
+                        <span className="truncate">{p.executable || `${p.name}.exe`}</span>
+                        <span className="text-[8px] bg-black/40 px-1 py-0 font-mono">WIN32</span>
+                      </div>
+                      <div className="p-2 font-mono text-[10px] text-terminal-green flex items-center justify-between bg-black/95">
+                        <span className="truncate">&gt; ./{p.executable || p.name}</span>
+                        <span className="text-terminal-gray text-[9px] bg-gray-900 px-1 border border-terminal-green/30">
+                          {p.language}
+                        </span>
+                      </div>
+                    </div>
 
-                <div className="flex gap-2 mt-3 pt-2 border-t border-win-soft/60">
-                  <a
-                    href={p.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="win-button text-win-caption flex-1 text-center"
-                  >
-                    Repositório
-                  </a>
-                  {p.readme && (
+                    {/* Cabeçalho do Card */}
+                    <div className="flex items-center gap-1.5">
+                      <Folder className="w-4 h-4 text-yellow-500 fill-yellow-400 shrink-0" />
+                      <h3 className="font-bold text-win-title text-win-selection truncate">{p.name}</h3>
+                      <span className="ml-auto text-[10px] bg-win-selection text-white px-1.5 py-0.2 font-mono">
+                        {p.language}
+                      </span>
+                    </div>
+
+                    {/* Resumo da Solução */}
+                    <p className="mt-2 text-win-caption text-gray-800 leading-relaxed min-h-[32px]">
+                      {p.summary || 'Solução técnica desenvolvida com foco em alta disponibilidade e performance.'}
+                    </p>
+
+                    {/* Tags de Stack */}
+                    {p.tags && p.tags.length > 0 && (
+                      <div className="mt-2.5 flex flex-wrap gap-1">
+                        {p.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="bevel-inset-thin bg-[#F3F1EC] text-black px-1.5 py-0.2 text-[9px] font-mono"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Botões Win32: Executar / Demo e Repositório GitHub */}
+                  <div className="flex gap-2 mt-3 pt-2 border-t border-win-soft/70">
                     <a
-                      href={p.readme}
+                      href={p.demo || p.readme || p.repo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="win-button text-win-caption"
+                      className="win-button text-win-caption flex-1 text-center font-bold"
+                      title={`Executar demonstração ou documentação de ${p.name}`}
                     >
-                      README
+                      ▶ Executar / Demo
                     </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+                    <a
+                      href={p.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="win-button text-win-caption flex-1 text-center"
+                      title={`Abrir repositório GitHub de ${p.name}`}
+                    >
+                      Repositório GitHub
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            /* Modo Detalhes: Tabela Clássica do Windows Explorer */
+            <div className="bevel-inset bg-white overflow-x-auto">
+              <table className="w-full text-left text-win-caption border-collapse">
+                <thead>
+                  <tr className="bg-win-face select-none">
+                    <th className="bevel-outset-thin px-2 py-1 font-bold text-black border-r border-win-shadow">Nome</th>
+                    <th className="bevel-outset-thin px-2 py-1 font-bold text-black border-r border-win-shadow w-24">Linguagem</th>
+                    <th className="bevel-outset-thin px-2 py-1 font-bold text-black border-r border-win-shadow">Resumo da Solução</th>
+                    <th className="bevel-outset-thin px-2 py-1 font-bold text-black text-center w-36">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {visibleProjects.map((p) => (
+                    <tr key={p.name} className="hover:bg-blue-100/60 border-b border-gray-200">
+                      <td className="px-2 py-1.5 flex items-center gap-1.5 font-bold text-win-selection">
+                        <Folder className="w-3.5 h-3.5 text-yellow-500 fill-yellow-400 shrink-0" />
+                        <span>{p.executable || p.name}</span>
+                      </td>
+                      <td className="px-2 py-1.5 font-mono text-gray-700">{p.language}</td>
+                      <td className="px-2 py-1.5 text-gray-800 leading-tight">
+                        {p.summary || 'Projeto de Engenharia de Software e Plataforma'}
+                      </td>
+                      <td className="px-2 py-1.5 text-center">
+                        <div className="flex gap-1 justify-center">
+                          <a
+                            href={p.demo || p.readme}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="win-button text-[10px] px-1.5 py-0"
+                            title="Executar / Demo"
+                          >
+                            Demo
+                          </a>
+                          <a
+                            href={p.repo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="win-button text-[10px] px-1.5 py-0"
+                            title="Repositório GitHub"
+                          >
+                            Git
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </main>
       </div>
     </WindowFrame>
