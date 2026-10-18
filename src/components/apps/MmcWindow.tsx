@@ -17,9 +17,12 @@ import {
   Building2,
   Calendar,
   MapPin,
+  Download,
+  FileDown,
 } from 'lucide-react';
 import { WindowFrame } from '../win2k';
 import { profileData } from '../../data/profile';
+import { downloadResumePdf } from '../../services/resumePdf';
 
 const WINDOW_ID = 'mmc';
 const MMC_MENUS = ['Console', 'Ação', 'Exibir', 'Favoritos', 'Ajuda'];
@@ -96,8 +99,20 @@ const ToolbarButton: React.FC<ToolbarButtonProps> = ({
 export const MmcWindow: React.FC = () => {
   const [activeTopic, setActiveTopic] = useState<MmcTopicId>('experience');
   const [isTreeExpanded, setIsTreeExpanded] = useState(true);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   const currentTopic = TOPICS.find((t) => t.id === activeTopic) || TOPICS[0];
+
+  const handleDownloadCv = () => {
+    setIsGeneratingPdf(true);
+    try {
+      downloadResumePdf();
+    } catch (err) {
+      console.error('Falha ao gerar PDF do currículo:', err);
+    } finally {
+      setTimeout(() => setIsGeneratingPdf(false), 800);
+    }
+  };
 
   const getRecordCount = () => {
     switch (activeTopic) {
@@ -181,7 +196,15 @@ export const MmcWindow: React.FC = () => {
         <ToolbarButton
           icon={<FileSpreadsheet className="w-3.5 h-3.5 text-green-800" />}
           label="Exportar Lista..."
-          onClick={() => {}}
+          onClick={handleDownloadCv}
+          title="Exportar Lista e Salvar Currículo"
+        />
+        <ToolbarButton
+          icon={<FileDown className="w-3.5 h-3.5 text-win-selection" />}
+          label={isGeneratingPdf ? 'Gerando...' : 'Baixar Currículo (.PDF)'}
+          onClick={handleDownloadCv}
+          disabled={isGeneratingPdf}
+          title="Baixar Currículo Completo em PDF"
         />
       </div>
 
@@ -255,7 +278,7 @@ export const MmcWindow: React.FC = () => {
         {/* Painel Direito: Conteúdo do Tópico Selecionado */}
         <main className="flex-1 overflow-auto bg-white p-3.5 flex flex-col select-none">
           {/* Cabeçalho do Tópico Selecionado */}
-          <div className="mb-3 pb-2 border-b border-win-soft flex justify-between items-start">
+          <div className="mb-3 pb-2 border-b border-win-soft flex flex-wrap justify-between items-center gap-2">
             <div>
               <div className="flex items-center gap-2">
                 {currentTopic.icon}
@@ -263,9 +286,22 @@ export const MmcWindow: React.FC = () => {
               </div>
               <p className="text-win-caption text-gray-600 mt-0.5">{currentTopic.description}</p>
             </div>
-            <span className="text-[10px] bg-win-face border border-win-shadow px-2 py-0.5 font-mono text-gray-700 shrink-0">
-              {getRecordCount()}
-            </span>
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                id="mmc-download-cv-btn"
+                type="button"
+                onClick={handleDownloadCv}
+                disabled={isGeneratingPdf}
+                className="win-button flex items-center gap-1.5 px-2.5 py-1 text-win-caption font-bold text-black cursor-default active:translate-y-px"
+                title="Baixar Currículo Profissional em formato PDF"
+              >
+                <Download className="w-3.5 h-3.5 text-win-selection shrink-0" />
+                <span>{isGeneratingPdf ? 'Gerando PDF...' : 'Baixar Currículo (.PDF)'}</span>
+              </button>
+              <span className="text-[10px] bg-win-face border border-win-shadow px-2 py-0.5 font-mono text-gray-700 hidden sm:inline-block">
+                {getRecordCount()}
+              </span>
+            </div>
           </div>
 
           {/* 1. TÓPICO: HISTÓRICO PROFISSIONAL */}

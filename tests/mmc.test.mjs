@@ -181,3 +181,46 @@ describe('Phase 5.3 - Technical Skills MMC Services Matrix', () => {
     assert.match(code, /skill\.status === 'Especialidade'/, 'Must style Especialidade status');
   });
 });
+
+describe('Phase 5.4 - Resume PDF Download Action', () => {
+  test('5.4.1 - src/services/resumePdf.ts exists and exports downloadResumePdf and generateResumePdf', () => {
+    const servicePath = path.join(projectRoot, 'src', 'services', 'resumePdf.ts');
+    assert.ok(fs.existsSync(servicePath), 'src/services/resumePdf.ts must exist');
+
+    const code = readSource('src', 'services', 'resumePdf.ts');
+    assert.match(code, /export\s+function\s+generateResumePdf/, 'Must export generateResumePdf');
+    assert.match(code, /export\s+function\s+downloadResumePdf/, 'Must export downloadResumePdf');
+  });
+
+  test('5.4.2 - resumePdf service integrates jspdf with docs/resume.md content', () => {
+    const code = readSource('src', 'services', 'resumePdf.ts');
+
+    assert.match(code, /import\s+\{\s*jsPDF\s*\}\s+from\s+'jspdf'/, 'Must import jsPDF from jspdf');
+    assert.match(code, /import\s+resumeContent\s+from\s+'\.\.\/\.\.\/docs\/resume\.md\?raw'/, 'Must import resume.md via Vite ?raw');
+    assert.match(code, /doc\.save\(/, 'Must trigger document save');
+  });
+
+  test('5.4.3 - MmcWindow integrates downloadResumePdf with Win32 button [ Baixar Currículo (.PDF) ]', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /import\s+\{\s*downloadResumePdf\s*\}\s+from\s+'\.\.\/\.\.\/services\/resumePdf'/, 'Must import downloadResumePdf');
+    assert.match(code, /id="mmc-download-cv-btn"/, 'Must contain button with id mmc-download-cv-btn');
+    assert.match(code, /className="win-button[^"]*"/, 'Download button must use win-button class');
+    assert.match(code, /Baixar Currículo \(\.PDF\)/, 'Must display Baixar Currículo (.PDF) label');
+    assert.match(code, /onClick=\{handleDownloadCv\}/, 'Must bind onClick to handleDownloadCv');
+  });
+
+  test('5.4.4 - MmcWindow toolbar provides secondary export / download action', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /label="Exportar Lista\.\.\."/, 'Toolbar must have Exportar Lista button');
+    assert.match(code, /label=\{isGeneratingPdf \? 'Gerando\.\.\.' : 'Baixar Currículo \(\.PDF\)'\}/, 'Toolbar must have dedicated PDF button');
+  });
+
+  test('5.4.5 - MmcWindow handles generation feedback state', () => {
+    const code = readSource(...mmcPath);
+
+    assert.match(code, /const\s+\[isGeneratingPdf,\s*setIsGeneratingPdf\]\s*=\s*useState\(false\)/, 'Must track isGeneratingPdf state');
+    assert.match(code, /isGeneratingPdf\s*\?\s*'Gerando PDF\.\.\.'\s*:\s*'Baixar Currículo \(\.PDF\)'/, 'Must display Gerando PDF... when active');
+  });
+});
