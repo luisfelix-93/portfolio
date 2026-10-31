@@ -141,11 +141,11 @@
   - [x] Interface de status: `ServiceStatus` (`"UP" | "DEGRADED" | "DOWN"`).
   - [x] Contratos de telemetria: `ServiceTelemetry`, `NodeTelemetry`, `ClusterResources`, `ClusterOverview`.
   - [x] Contratos de comando do terminal: `TerminalCommandRequest`, `TerminalCommandResponse`, `ApiErrorResponse`.
-- [ ] **6.2 Cliente HTTP e Camada de Resiliência (`src/services/telemetryApi.ts`)**
-  - [ ] Configuração de URL base via `VITE_TELEMETRY_API_URL` com fallback seguro (`https://telemetry.support-homelab.api.br/api/v1`).
-  - [ ] Métodos de consumo: `checkHealth()`, `getOverview()`, `getServices()`, `getNodes()`, `sendCommand()`.
-  - [ ] Tratamento de status 400 da API preservando `output_text` para o terminal.
-  - [ ] Mecanismo de fallback gracioso (dados simulados coerentes do cluster K3s em caso de offline/timeout).
+- [x] **6.2 Cliente HTTP e Camada de Resiliência (`src/services/telemetryApi.ts`)**
+  - [x] Configuração de URL base via `VITE_TELEMETRY_API_URL` com fallback seguro (`https://telemetry.support-homelab.api.br/api/v1`).
+  - [x] Métodos de consumo: `checkHealth()`, `getOverview()`, `getServices()`, `getNodes()`, `sendCommand()`.
+  - [x] Tratamento de status 400 da API preservando `output_text` para o terminal.
+  - [x] Mecanismo de fallback gracioso (dados simulados coerentes do cluster K3s em caso de offline/timeout).
 - [ ] **6.3 Suíte de Testes Automatizados (`tests/putty.test.mjs`)**
   - [ ] Teste 6.1: Existência do componente `PuttyWindow.tsx` e export no barrel `src/components/apps/index.ts`.
   - [ ] Teste 6.2: Envolvimento no `WindowFrame` associado ao ID `putty`.
