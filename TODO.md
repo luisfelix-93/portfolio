@@ -133,7 +133,7 @@
 
 ---
 
-## 💻 Fase 6: Tela 4 — Terminal Homelab ("PuTTY SSH & Telemetry API")
+## 💻 Fase 6: Tela 4 — Terminal Homelab ("PuTTY SSH & Telemetry API") ✅
 *Meta: O diferencial técnico do portfólio — terminal interativo conectando a persona dev/devops ao homelab via Homelab Telemetry API.*
 *Documento de Referência:* [`homelab-telemetry-api/docs/frontend-integration.md`](homelab-telemetry-api/docs/frontend-integration.md) e [`homelab-terminal-phase6.md`](homelab-terminal-phase6.md)
 
@@ -146,30 +146,30 @@
   - [x] Métodos de consumo: `checkHealth()`, `getOverview()`, `getServices()`, `getNodes()`, `sendCommand()`.
   - [x] Tratamento de status 400 da API preservando `output_text` para o terminal.
   - [x] Mecanismo de fallback gracioso (dados simulados coerentes do cluster K3s em caso de offline/timeout).
-- [ ] **6.3 Suíte de Testes Automatizados (`tests/putty.test.mjs`)**
-  - [ ] Teste 6.1: Existência do componente `PuttyWindow.tsx` e export no barrel `src/components/apps/index.ts`.
-  - [ ] Teste 6.2: Envolvimento no `WindowFrame` associado ao ID `putty`.
-  - [ ] Teste 6.3: Estética CRT/PuTTY (`#000000`, verde `#00FF66`, `font-terminal`, cursor piscante).
-  - [ ] Teste 6.4: Prompt interativo (`visitante@homelab-core:~$`), input e auto-foco no canvas.
-  - [ ] Teste 6.5: Execução de comandos locais (`help`, `clear`, `neofetch`, `docker ps`, `cat contato.txt`, `ping`).
-  - [ ] Teste 6.6: Execução de comandos de telemetria (`status`, `services`, `nodes`) e fallback de rede.
-  - [ ] Teste 6.7: Histórico de comandos navegável via setas (`ArrowUp` / `ArrowDown`).
-  - [ ] Teste 6.8: Integração em `src/App.tsx` substituindo o placeholder estático por `<PuttyWindow />`.
-- [ ] **6.4 Componente Interativo PuTTY (`src/components/apps/PuttyWindow.tsx`)**
-  - [ ] Canvas terminal com fundo `#000000`, fonte `Courier Prime` e texto verde fósforo `#00FF66`.
-  - [ ] Banner ASCII Art "HOMELAB-CORE GATEWAY" e mensagem de boas-vindas.
-  - [ ] Prompt interativo `visitante@homelab-core:~$` com scroll automático no buffer de saída.
-  - [ ] Histórico de comandos com navegação para cima/baixo (`ArrowUp` / `ArrowDown`).
-  - [ ] Parser de comandos locais e dispatch assíncrono para a Telemetry API.
-  - [ ] Barra de status inferior: latência real/simulada, status da conexão (`ONLINE` / `OFFLINE`) e criptografia SSH `[AES-256]`.
-- [ ] **6.5 Integração no Desktop e Barrel (`src/App.tsx` e `apps/index.ts`)**
-  - [ ] Exportação do `PuttyWindow` em `src/components/apps/index.ts`.
-  - [ ] Substituição do placeholder em `src/App.tsx` pelo componente `<PuttyWindow />`.
-- [ ] **6.6 Validação Final da Fase (Phase X)**
-  - [ ] Execução da suíte de testes com `node --test tests/putty.test.mjs` (100% pass).
-  - [ ] Execução de toda a suíte de testes do repositório via `npm test` sem regressões.
-  - [ ] Validação de tipos (`npx tsc --noEmit`) e lint (`npm run lint`).
-  - [ ] Compilação de produção sem erros (`npm run build`).
+- [x] **6.3 Suíte de Testes Automatizados (`tests/putty.test.mjs`)**
+  - [x] Teste 6.1: Existência do componente `PuttyWindow.tsx` e export no barrel `src/components/apps/index.ts`.
+  - [x] Teste 6.2: Envolvimento no `WindowFrame` associado ao ID `putty`.
+  - [x] Teste 6.3: Estética CRT/PuTTY (`#000000`, verde `#00FF66`, `font-terminal`, cursor piscante).
+  - [x] Teste 6.4: Prompt interativo (`visitante@homelab-core:~$`), input e auto-foco no canvas.
+  - [x] Teste 6.5: Execução de comandos locais (`help`, `clear`, `neofetch`, `docker ps`, `cat contato.txt`, `ping`).
+  - [x] Teste 6.6: Execução de comandos de telemetria (`status`, `services`, `nodes`) e fallback de rede.
+  - [x] Teste 6.7: Histórico de comandos navegável via setas (`ArrowUp` / `ArrowDown`).
+  - [x] Teste 6.8: Integração em `src/App.tsx` substituindo o placeholder estático por `<PuttyWindow />`.
+- [x] **6.4 Componente Interativo PuTTY (`src/components/apps/PuttyWindow.tsx`)**
+  - [x] Canvas terminal com fundo `#000000`, fonte `Courier Prime` e texto verde fósforo `#00FF66`.
+  - [x] Banner ASCII Art "HOMELAB-CORE GATEWAY" e mensagem de boas-vindas.
+  - [x] Prompt interativo `visitante@homelab-core:~$` com scroll automático no buffer de saída.
+  - [x] Histórico de comandos com navegação para cima/baixo (`ArrowUp` / `ArrowDown`).
+  - [x] Parser de comandos locais e dispatch assíncrono para a Telemetry API.
+  - [x] Barra de status inferior: latência real/simulada, status da conexão (`ONLINE` / `OFFLINE`) e criptografia SSH `[AES-256]`.
+- [x] **6.5 Integração no Desktop e Barrel (`src/App.tsx` e `apps/index.ts`)**
+  - [x] Exportação do `PuttyWindow` em `src/components/apps/index.ts`.
+  - [x] Substituição do placeholder em `src/App.tsx` pelo componente `<PuttyWindow />`.
+- [x] **6.6 Validação Final da Fase (Phase X)**
+  - [x] Execução da suíte de testes com `node --test tests/putty.test.mjs` (100% pass - 16/16).
+  - [x] Execução de toda a suíte de testes do repositório via `npm test` sem regressões (100% pass - 116/116).
+  - [x] Validação de tipos (`npx tsc --noEmit`) com 0 erros.
+  - [x] Compilação de produção sem erros (`npm run build`).
 
 ---
 
