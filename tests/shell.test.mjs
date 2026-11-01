@@ -63,5 +63,5 @@ test('2.5.2 - src/App.tsx integrates WindowManagerProvider and DesktopCanvas', (
   assert.match(code, /<WinverWindow\s*\/>/, 'App must render winver window (WinverWindow)');
   assert.match(code, /<ExplorerWindow\s*\/>/, 'App must render explorer window (ExplorerWindow)');
   assert.match(code, /<MmcWindow\s*\/>/, 'App must render mmc window (MmcWindow)');
-  assert.match(code, /WindowFrame\s+id="putty"/, 'App must render putty window');
+  assert.match(code, /(?:<PuttyWindow\s*\/?>|WindowFrame\s+id="putty")/, 'App must render putty window (PuttyWindow)');
 });

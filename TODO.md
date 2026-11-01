@@ -133,27 +133,43 @@
 
 ---
 
-## 💻 Fase 6: Tela 4 — Terminal Homelab ("PuTTY SSH / MS-DOS")
-*Meta: O diferencial técnico do portfólio — terminal interativo conectando a persona dev/devops ao homelab.*
+## 💻 Fase 6: Tela 4 — Terminal Homelab ("PuTTY SSH & Telemetry API") ✅
+*Meta: O diferencial técnico do portfólio — terminal interativo conectando a persona dev/devops ao homelab via Homelab Telemetry API.*
+*Documento de Referência:* [`homelab-telemetry-api/docs/frontend-integration.md`](homelab-telemetry-api/docs/frontend-integration.md) e [`homelab-terminal-phase6.md`](homelab-terminal-phase6.md)
 
-- [ ] **6.1 Shell Visual do PuTTY (`PuttyWindow.tsx`)**
-  - [ ] Moldura com barra de título `homelab-gateway:22 - PuTTY (SSH-2.0-OpenSSH_9.2p1)`.
-  - [ ] Área de console com fundo `#000000`, fonte `Courier Prime` e texto verde fósforo `#00FF66`.
-  - [ ] Cursor de bloco piscante autêntico.
-- [ ] **6.2 Parser Interativo de Comandos CLI**
-  - [ ] Prompt interativo: `visitante@homelab-core:~$`.
-  - [ ] Suporte a histórico de comandos com setas para cima/baixo (`ArrowUp` / `ArrowDown`).
-  - [ ] Tratamento de foco automático ao clicar na área do console.
-- [ ] **6.3 Implementação dos Comandos Simulados**
-  - [ ] `help`: Lista os comandos disponíveis com descrições.
-  - [ ] `neofetch` / `fastfetch`: Banner ASCII Art com especificações do Homelab (Debian Linux, kernel, CPU, RAM, Uptime).
-  - [ ] `docker ps`: Tabela simulando containers ativos (Nginx, Portainer, Grafana, Postgres, etc.).
-  - [ ] `ping [host]`: Simulação de pacotes ICMP com latências realistas.
-  - [ ] `cat contato.txt`: Exibição formatada dos canais de contato.
-  - [ ] `clear`: Limpeza da tela do terminal.
-  - [ ] Mensagem de fallback amigável para comandos desconhecidos (`Comando não reconhecido. Digite 'help'`).
-- [ ] **6.4 Barra de Status de Telemetria**
-  - [ ] Indicador pulsante: `CONEXÃO CRIPTOGRAFADA [AES-256-GCM] | LATÊNCIA: 18ms | STATUS: ONLINE`.
+- [x] **6.1 Tipagem TypeScript da Telemetria (`src/types/telemetry.ts`)**
+  - [x] Interface de status: `ServiceStatus` (`"UP" | "DEGRADED" | "DOWN"`).
+  - [x] Contratos de telemetria: `ServiceTelemetry`, `NodeTelemetry`, `ClusterResources`, `ClusterOverview`.
+  - [x] Contratos de comando do terminal: `TerminalCommandRequest`, `TerminalCommandResponse`, `ApiErrorResponse`.
+- [x] **6.2 Cliente HTTP e Camada de Resiliência (`src/services/telemetryApi.ts`)**
+  - [x] Configuração de URL base via `VITE_TELEMETRY_API_URL` com fallback seguro (`https://telemetry.support-homelab.api.br/api/v1`).
+  - [x] Métodos de consumo: `checkHealth()`, `getOverview()`, `getServices()`, `getNodes()`, `sendCommand()`.
+  - [x] Tratamento de status 400 da API preservando `output_text` para o terminal.
+  - [x] Mecanismo de fallback gracioso (dados simulados coerentes do cluster K3s em caso de offline/timeout).
+- [x] **6.3 Suíte de Testes Automatizados (`tests/putty.test.mjs`)**
+  - [x] Teste 6.1: Existência do componente `PuttyWindow.tsx` e export no barrel `src/components/apps/index.ts`.
+  - [x] Teste 6.2: Envolvimento no `WindowFrame` associado ao ID `putty`.
+  - [x] Teste 6.3: Estética CRT/PuTTY (`#000000`, verde `#00FF66`, `font-terminal`, cursor piscante).
+  - [x] Teste 6.4: Prompt interativo (`visitante@homelab-core:~$`), input e auto-foco no canvas.
+  - [x] Teste 6.5: Execução de comandos locais (`help`, `clear`, `neofetch`, `docker ps`, `cat contato.txt`, `ping`).
+  - [x] Teste 6.6: Execução de comandos de telemetria (`status`, `services`, `nodes`) e fallback de rede.
+  - [x] Teste 6.7: Histórico de comandos navegável via setas (`ArrowUp` / `ArrowDown`).
+  - [x] Teste 6.8: Integração em `src/App.tsx` substituindo o placeholder estático por `<PuttyWindow />`.
+- [x] **6.4 Componente Interativo PuTTY (`src/components/apps/PuttyWindow.tsx`)**
+  - [x] Canvas terminal com fundo `#000000`, fonte `Courier Prime` e texto verde fósforo `#00FF66`.
+  - [x] Banner ASCII Art "HOMELAB-CORE GATEWAY" e mensagem de boas-vindas.
+  - [x] Prompt interativo `visitante@homelab-core:~$` com scroll automático no buffer de saída.
+  - [x] Histórico de comandos com navegação para cima/baixo (`ArrowUp` / `ArrowDown`).
+  - [x] Parser de comandos locais e dispatch assíncrono para a Telemetry API.
+  - [x] Barra de status inferior: latência real/simulada, status da conexão (`ONLINE` / `OFFLINE`) e criptografia SSH `[AES-256]`.
+- [x] **6.5 Integração no Desktop e Barrel (`src/App.tsx` e `apps/index.ts`)**
+  - [x] Exportação do `PuttyWindow` em `src/components/apps/index.ts`.
+  - [x] Substituição do placeholder em `src/App.tsx` pelo componente `<PuttyWindow />`.
+- [x] **6.6 Validação Final da Fase (Phase X)**
+  - [x] Execução da suíte de testes com `node --test tests/putty.test.mjs` (100% pass - 16/16).
+  - [x] Execução de toda a suíte de testes do repositório via `npm test` sem regressões (100% pass - 116/116).
+  - [x] Validação de tipos (`npx tsc --noEmit`) com 0 erros.
+  - [x] Compilação de produção sem erros (`npm run build`).
 
 ---
 
